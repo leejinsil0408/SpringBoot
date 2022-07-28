@@ -46,7 +46,7 @@ public class HelloController {
         //model.addAttribute(key, val) // value에는 배열, 객체도 아무거나 넣을 수 있음
         model.addAttribute("msg", "Hi" + id + "!!");
         model.addAttribute("msg", abc);
-        model.addAttribute("id2", id);
+        //model.addAttribute("id2", id);
         //static으로 선언한 문자열 변수를 return하여 String 메모리 절약
         return account;
         //ViewResolver를 통해 html 확장자를 가진 제목의 문서를 비교해서 찾아간다.
