@@ -51,6 +51,7 @@ public class HelloController {
         return account;
         //ViewResolver를 통해 html 확장자를 가진 제목의 문서를 비교해서 찾아간다.
         //return 문자열과 Model 데이터를 viewResolver에 전달
+
     }
 }
 
