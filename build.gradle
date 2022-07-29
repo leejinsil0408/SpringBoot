@@ -12,12 +12,16 @@ version = '0.0.1-SNAPSHOT'
 //자바 버전
 sourceCompatibility = '17'
 
-//디펜던시 다운 받는 위치
+//디펜던시 다운 받는 위치 (디펜던시:두 모듈간의 연결)
 repositories {
     mavenCentral()
 }
 
 dependencies {
+
+    //룸북추가
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
     //타임리프: springboot(백엔드)와 html을 '유연하게' 연결해주는 템플릿
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     //implementation 'org.springframework.boot:spring-boot-devtools-tests'
