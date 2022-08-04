@@ -16,7 +16,6 @@ dependencies {
     //롬북추가
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     //타임리프 : springBoot(백앤드)와 html을 유연하게 연결해주는 템플릿
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     //starter web에 tomcat이 포함되어있음

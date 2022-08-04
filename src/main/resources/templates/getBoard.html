@@ -6,12 +6,6 @@
 </head>
 <body th:align="center">
     <h1>게시글 상세</h1>
-    <!--
-    [클라이언트] html의 form 태그를 통한 submit 액션을 실행하면 [서버]로 전달되는 mapping 주소
-    th:action="insertBoard"
-    mothod="post" // get/post
-    [서버]컨트롤러는 get 방식 받는 것과 post 방식으로 받는 것을 구분 할 수 있다.
-    -->
         <form th:action="@{updateBoard}" method="post">
             <input name="seq" type="hidden" th:value="${board.seq}">
             <table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
