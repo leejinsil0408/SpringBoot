@@ -6,7 +6,7 @@
 </head>
 
 <body th:align="center">
-    <h1>게시글 등록 </h1>
+    <h1>새 글 등록 </h1>
     <!--
         [클라이언트] html의 form태그를 통한 submit액션을 실행하면 [서버]로 전달되는 mapping주소
         th:action="insertBoard"
@@ -15,7 +15,7 @@
     -->
 
     <form th:action="insertBoard" method="post">
-        <table th:align="center" boder="1" th:cellpadding="0" th:cellspacing="0">
+        <table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
             <tr>
                 <td bgcolor="orange" th:text="제목" width="80"></td>
                 <!--
@@ -25,11 +25,11 @@
             </tr>
             <tr>
                 <td bgcolor="orange" th:text="작성자"></td>
-                <td><input name="writer" type="text" size="10"></td>
+                <td><input name="writer" type="text" size="50"></td>
             </tr>
             <tr>
                 <td bgcolor="orange" th:text="내용">
-                <td><textarea name="content" cols="50" rows="10"></textarea></td>
+                <td><textarea name="content" cols="55" rows="10"></textarea></td>
             </tr>
             <tr>
                 <td colspan="2" align="center">

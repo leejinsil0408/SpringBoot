@@ -9,6 +9,7 @@
 
 <body th:align="center">
 <h1>게시글 목록</h1>
+
 <table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0" th:width="700">
     <tr>
         <th bgcolor="orange" width="100">번호</th>
@@ -40,10 +41,9 @@
        <!-- 361p -->
        <!-- <td th:text="${board.title}"> -->
        <td th:text="${board.writer}">
-       <!-- dates.format = 날짜를 일정형식으로 바꿔주는 포맷팅
-            <td th:text="${#dates.format(board.createDate, 'yyyy-MM-dd')}"></td> -->
-       <td th:text="${board.createDate}">
-       <td th:text="${board.cnt}">
+       <!-- dates.format = 날짜를 일정형식으로 바꿔주는 포맷팅 -->
+        <td th:text="${#dates.format(board.createDate, 'yyyy-MM-dd')}">
+        <td th:text="${board.cnt}">
    </tr>
 
 </table>
