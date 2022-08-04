@@ -1,16 +1,37 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>새 글 등록</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-<body th:align="insertBoard" method="post">
+
+<body th:align="center">
+<h1>게시글 등록 </h1>
+<form th:action="insertBoard" method="post">
 <table th:align="center" boder="1" th:cellpadding="0" th:cellspacing="0">
 
     <tr>
-        <td bgcolor="orange" </td>
+        <td bgcolor="orange" th:text="제목" width="80"></td>
+        <!--
+        [클라이언트]name="title"은 [서버]에서 데이터 매개변수를 받기 위한 변수명(key)
+        -->
+        <td><input name="title" type="text" size="50"></td>
+    </tr>
+    <tr>
+        <td bgcolor="orange" th:text="작성자"></td>
+        <td><input name="writer" type="text" size="10"></td>
+    </tr>
+    <tr>
+        <td bgcolor="orange" th:text="내용">
+        <td><textarea name="content" cols="50" rows="10"></textarea></td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            <input type="submit" value="게시글 등록">
+        </td>
     </tr>
 </table>
-daddwewdfdss11
+</form>
+<a th:href="@{/getBoardList}">글목록</a>
 </body>
 </html>
