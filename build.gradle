@@ -21,6 +21,8 @@ repositories {
 
 //라이브러리
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
 
     //compile : 자바코드를 실행 가능한 바이트코드로 변경 (바이트코드로 실행하면 컴퓨터는 인식하고 수행)
     //runtime : 실행가능한(컴파일이 완료된) 코드를 실행하는 시점
@@ -50,12 +52,11 @@ dependencies {
 //    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     //개발하는데 편리한 기능들을 집합
-    compileOnly 'org.springframework.boot:spring-boot-devtools'
+//    compileOnly 'org.springframework.boot:spring-boot-devtools'
 
     //DB오라클 접속에 필요한 라이브러리
     //ojdbc8 오라클에서 제공하는 라이브러리로 JAVA와 연동하기 위해 쓰임 (8버전이 19c에 활용 가능)
     runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
-
     //oraclepki, osdt core, osdt_cert 오라클과 자바 사이에서
     //연동되는 드라이버를 사용하기 위한 정보가 담긴 라이브러리. 전자지갑에 있음
     //드라이버 예 : 그래픽카드를 컴퓨터와 연결하기 위해서 드라이버를 다운받아

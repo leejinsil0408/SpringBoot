@@ -1,5 +1,15 @@
 package com.example.test01.controller;
 
+/**
+ * @package : com.example.Test01.controller
+ * @name : BoardController.java
+ * @date : 2022-08-10 16:45
+ * @author : chueat
+ * @version : 1.0.0
+ * @modifyed :
+ * @description : 게시판 컨트롤러
+ */
+
 //외장 라이브러리 호출(import), gradle로 설치한 라이브러리
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
