@@ -5,7 +5,7 @@ import com.example.test01.domain.account_info.Member;
 
 public interface MemberService {
 
-    List<Member> getMemberList(Member member);
+    List<Member> getMemberList();
 
     void insertMember(Member member);
 

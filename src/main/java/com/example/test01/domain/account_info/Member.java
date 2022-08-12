@@ -1,11 +1,12 @@
 package com.example.test01.domain.account_info;
 
-
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import java.util.Date;
 import javax.persistence.*;
+
+//@AllArgsConstructor : 모든 매개변수를 갖는 생성자
+//@NoArgsConstructor(access = AccessLevel.PROTECTED) : 매개변수 없는 생성자
+//@Builder
 
 @ToString
 @Entity // JPA가 이 객체를 기준으로 table을 만들어야 한다고 선언
@@ -24,18 +25,18 @@ public class Member {
         @GeneratedValue
         private Long seq;
 
-        @Column(length = 40, nullable = false)
+        @Column(length = 40)
         private String id;
 
-        @Column(nullable = false)
         private String password;
 
-        @Column
         private String email;
 
+        @Setter
         @Temporal(TemporalType.DATE)
         private Date createDate;
 
+        @Setter
         @Temporal(TemporalType.DATE)
         private Date updateDate;
 }

@@ -3,7 +3,7 @@
 <!-- 타임리프 템플릿을 통하여 controller(자바)에서 받아온 데이터를
     HTML 문서에 적시킨 뒤에 '완성된' HTML 파일만 클라이언트 전달 -->
 <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset=UTF-8">
         <title>회원정보 상세</title>
 </head>
 <body th:align="center">
@@ -11,20 +11,19 @@
 <!--회원정보 같은 민감 데이터는 암호와와 숨김 코드로 작성이 필요-->
 
 <form th:action="@{/account/updateAccount}" method="post">
-    <input name="seq" type="hidden" th:value="${seq}" >
+    <input name="seq" type="hidden" th:value="${member.seq}" >
     <table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
-
         <tr>
-            <td bgcolor="orange" th:text="번호" width="80"></td>
+            <td bgcolor="#add8e6" th:text="번호" width="80"></td>
             <td th:text="${member.seq}"></td>
         </tr>
         <tr>
-            <td bgcolor="orange" th:text="ID" width="80"></td>
+            <td bgcolor="#add8e6" th:text="ID" width="80"></td>
             <!-- [서버]에서 java의 데이터를 [클라이언트]html문서에 값을 할당해주는 문법 ${title} -->
             <td><input name="id" type="text" th:value="${member.id}"></td>
         </tr>
         <tr>
-            <td bgcolor="orange" th:text="email"></th>
+            <td bgcolor="#add8e6" th:text="email"></td>
             <td th:text="${member.email}"></td>
         </tr>
         <tr>

@@ -1,6 +1,5 @@
 package com.example.test01.service.account_info;
 
-import com.example.test01.domain.Board;
 import com.example.test01.domain.account_info.Member;
 import com.example.test01.persistence.account_info.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +10,10 @@ import java.util.List;
 @Service
 public class MemberServicelmpl implements MemberService {
 
+    private final MemberRepository memberRepo;
+
     @Autowired
-    private MemberRepository memberRepo;
-
-
+    protected MemberServicelmpl(MemberRepository memberRepo) {this.memberRepo = memberRepo; }
     //모든 회원의 정보를 가져다 오는 것
     //return List<Member> : 모든 회원의 정보를 List 배열에 담아서 return
     //List<Member> : 이 메서드가 실행되면 return되는 타입
@@ -22,7 +21,7 @@ public class MemberServicelmpl implements MemberService {
     //memberRepo : @Autowried MemberRepository를 통해 기능 실행
     //findAll() : memberRepo에 있는 보든 정보 가져오기 메서드 실행
     @Override
-    public List<Member> getMemberList(Member member) {
+    public List<Member> getMemberList() {
         return (List<Member>) memberRepo.findAll(); //형변환
     }
 
@@ -67,6 +66,7 @@ public class MemberServicelmpl implements MemberService {
 
     @Override
     public void deleteMember(Member member) {
+
         memberRepo.deleteById(member.getSeq());
     }
 }

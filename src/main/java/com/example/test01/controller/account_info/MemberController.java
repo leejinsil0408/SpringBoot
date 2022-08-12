@@ -7,12 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Date;
 
 //디스페처 서블릿이 컨트롤러를 찾기 위해 @Controller 선언
 @Controller
+@RequestMapping(path ="/account")
 public class MemberController {
 
     @Autowired
@@ -22,63 +24,58 @@ public class MemberController {
     //게시판 : 사용자 관점, 시스템 관리 관점(회원 관리, 게시판 관리, 콘텐츠 관리) [ 웹 솔루션을 관리하는 오너 ]
     //getAccountList : 전체 회원 목록 보기 (웹 솔루션에서 웹 시스템을 관리하는 관리자 기능)
     //String : 이 메서드가 실행 완료되면 최종적으로 리턴하는 타입 (HTML 파일명을 찾기 위해)
-    @GetMapping("/account/getAccountList")
-    public String getAccountList(Model model, Member member) {
+    @GetMapping("/getAccountList")
+    public String getAccountList(Model model) {
         //model : 컨트롤러에서 작업한 결과물을 HTML에 전달하기 위한 매개체
         //addAttribute : key/value로 데이터를 저장하는
         //attributeName(key) : 뒤에 있는 value를 호출하기 위한 문자열(key)
         //memberService.getMemberList() : @Autowred로 선언된 MemberService 클래스 호출하여
         //getMemberList()메서드 실행
-
-        List<Member> memberList = memberService.getMemberList(member);
-        model.addAttribute("memberList", memberList);
+        model.addAttribute("memberList", memberService.getMemberList());
         return "/account/getAccountList";
     }
 
-    //return 타입이 String인 이유 : HTML 파일명을 찾기 위해
-    @GetMapping("/account/insertAccount")
-    public String insertMember() {
-        return "/account/insertAccount";
-    }
-
-    //Member라는 매개변수로 controller에 전달
-    //Member(Entity)이고 DTO(Data Transfer Object)
-    //어디선가 받거나 만든 데이터를 객체로 만드는 것 : DTO
-    @PostMapping("/account/insertAccount")
-    public String insertMember(Member member) {
-        //클아이언트에서 ID/PW
-        //createDate
-        //updateDate
-        member.setCreateDate(new Date());
-        member.setUpdateDate(new Date());
-        memberService.insertMember(member);
-        return "/account/insertAccount";
-    }
-
-    @GetMapping("/account/getAccount")
+    //member : 클라이언트에서 서버로 데이터를 받는 Entity
+    //model : 서버에서 클라이언트로 데이터를 전송하는 매개체
+    @GetMapping("/getAccount")
     public String getAccount(Member member, Model model) {
         model.addAttribute("member", memberService.getMember(member));
         return "/account/getAccount";
     }
 
     //updateAccount : 회원 정보 수정
-    @PostMapping("/account/updateAccount")
+    @PostMapping("/updateAccount")
     public String updateAccount(Member member) {
         memberService.updateMember(member);
         return "redirect:/account/getAccountList";
     }
 
-    @GetMapping("/account/updateAccount")
-    public String updateAccountView(Member member, Model model) {
-        model.addAttribute("member", memberService.getMember(member));
-        return "/account/insertAccount";
-    }
-
     //deleteAccount : 회원 정보 삭제
-    @PostMapping("/account/deleteAccount")
+    @GetMapping("/deleteAccount")
     public String deleteAccount(Member member) {
         memberService.deleteMember(member);
         return "redirect:/account/getAccountList";
+
+    }
+
+    //return 타입이 String인 이유 : HTML 파일명을 찾기 위해
+    @GetMapping("/insertAccount")
+    public String insertAccountView() {
+        return "account/insertAccount";
+    }
+
+    //Member라는 매개변수로 controller에 전달
+    //Member(Entity)이고 DTO(Data Transfer Object)
+    //어디선가 받거나 만든 데이터를 객체로 만드는 것 : DTO
+    @PostMapping("/insertAccount")
+    public String insertAccountView(Member member) {
+        //클아이언트에서 ID/PW
+        //createDate
+        //updateDate
+        member.setCreateDate(new Date());
+        member.setUpdateDate(new Date());
+        memberService.insertMember(member);
+        return "index";
     }
 }
 

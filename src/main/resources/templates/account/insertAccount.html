@@ -7,31 +7,27 @@
 <body>
 
 
-<form action="/account/insertAccount" method="post">
+<form th:action="@{/account/insertAccount}" method="post">
     <table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
         <tr>
-            <td bgcolor="orange" th:text="ID" width="80"></td>
-            <!--
-            [클라이언트]name="title"은 [서버]에서 데이터 매개변수를 받기 위한 변수명(key)
-            -->
-            <td><input name="id" type="text" size="50"></td>
+            <td bgcolor="#add8e6" th:text="ID" width="80"></td>
+            <!-- [클라이언트]name="title"은 [서버]에서 데이터 매개변수를 받기 위한 변수명(key) -->
+            <td><input name="id" type="text" th:placeholder="ID" size="50"></td>
         </tr>
         <tr>
-            <td bgcolor="orange" th:text="PASSWORD"></td>
-            <td><input name="password" type="text" size="50"></td>
+            <td bgcolor="#add8e6" th:text="PASSWORD"></td>
+            <td><input name="password" type="text" th:placeholder="PASSWORD" size="10"></td>
         </tr>
         <tr>
-            <td bgcolor="orange" th:text="email"></td>
-            <td><input name="email" type="text" size="50"></td>
+            <td bgcolor="#add8e6" th:text="EMAIL" width="80"></td>
+            <td><input name="email" type="text" th:placeholder="EMAIL" size="50"></td>
         </tr>
         <tr>
             <td colspan="2" align="center">
                 <input type="submit" value="회원등록">
-            <td th:href="/account/getAccountList">회원등록</td>
+            <td>
         </tr>
     </table>
 </form>
-
-
 </body>
 </html>
