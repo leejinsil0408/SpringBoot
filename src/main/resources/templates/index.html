@@ -5,17 +5,22 @@
     <title>Title</title>
 </head>
 <body>
-    hello world
+    <h1 class="test">True Lee Page</h1>
     <a href="/hello">hello</a>
-    <a href="https://www.naver.com">naver</a>
+    <a href="https://www.naver.com">naver!</a>
     <a href="/getBoardList">게시판 연결</a>
-    <p th:text="${msg}"></p>
+    <a href="account/insertAccount">회원가입</a>
+    <a href="account/getAccountList">회원가입 목록</a>
     <hr>
-    <h1>회원가입</h1>
-    <form method="POST" action="/account">
+    <h1>회원가입 index page test</h1>
+    <p th:text="${msg}"></p>
+    <form method="POST" action="/index">
+        <!------input태그의 id1변수이름으로 데이터를 서버에 전달하고------>
+        <!------서버 model에서 받아온 id2변수이름으로 데이터를 html에 출력------>
         <input type="text" name="id1" th:value="${id2}" />
         <input type="submit" value="Click" />
     </form>
+    <hr>
 
 </body>
 </html>

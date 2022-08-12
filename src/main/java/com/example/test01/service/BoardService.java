@@ -26,7 +26,5 @@ public interface BoardService {
 
     void updateBoard(Board board);
 
-    void daleteBoard(Board board);
-
     void deleteBoard(Board board);
 }

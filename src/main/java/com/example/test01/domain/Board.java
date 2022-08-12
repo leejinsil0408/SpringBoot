@@ -28,7 +28,6 @@ import java.util.Date;
 @ToString
 @Setter
 @Entity
-
 public class Board {
 
     //@id : PK (primary key) SQL문의 기본키

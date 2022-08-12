@@ -32,14 +32,7 @@
        <td th:text="${state.count}"> -->
 
        <!-- 363p -->
-       <td><a th:href="@{/getBoard(
-                                seq=${board.seq},
-                                title=${board.title},
-                                writer=${board.writer},
-                                content=${board.content},
-                                createDate=${board.createDate},
-                                cnt=${board.cnt}
-                                )}"
+       <td><a th:href="@{/getBoard(seq=${board.seq})}"
               th:text="${board.title}"></a></td>
         <td th:text="${board.writer}"></td>
        <!-- dates.format = 날짜를 일정형식으로 바꿔주는 포맷팅 -->

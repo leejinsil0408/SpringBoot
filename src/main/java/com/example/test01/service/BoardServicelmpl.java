@@ -54,11 +54,6 @@ public class BoardServicelmpl implements BoardService {
     }
 
     @Override
-    public void daleteBoard(Board board) {
-
-    }
-
-    @Override
     public void deleteBoard(Board board) {
         boardRepo.deleteById(board.getSeq());
     }
