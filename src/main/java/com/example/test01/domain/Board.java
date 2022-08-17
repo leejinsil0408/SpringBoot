@@ -16,8 +16,7 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 import java.util.Date;
-//import com.fasterxml.jackson.annotation.JsonAnySetter;
-//import org.springframework.boot.autoconfigure.domain.EntityScan;
+
 
 //롬북에 있는 Getter라는 메서드를 통해 하단에 있는 클래스 Board는
 //자동으로 getter, setter 메서드가 생성됨을 암시함 (@어노테이션)
@@ -42,7 +41,7 @@ public class Board {
     @Column(nullable = false, updatable = false)
     private String writer;
 
-    //@ColumnDafault 생성할 때 기본 데이터
+    //@ColumnDefault 생성할 때 기본 데이터
     @Column(nullable = false)
     @ColumnDefault("'no content'")
     private String content;

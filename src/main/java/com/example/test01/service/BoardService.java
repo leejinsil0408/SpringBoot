@@ -10,15 +10,12 @@ package com.example.test01.service;
  * @description : 게시판 서비스
  **/
 
-
 import com.example.test01.domain.Board;
 import java.util.List;
 
 public interface BoardService {
 
     List<Board> getBoardList();
-
-    List<Board> getBoardList(Board board);
 
     void insertBoard(Board board);
 

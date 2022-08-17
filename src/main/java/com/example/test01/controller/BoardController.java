@@ -18,7 +18,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class BoardController {
     //BoardService의 getBoardList메서드 실행 > BoardRepository(CrudRepository).findAll()를 통해서 (JPA번역)
     //DB의 데이터 불러오기(테이블전체) (SQL)
     @GetMapping("/getBoardList")
-    public String getBoardList(Model model, Board board) {
+    public String getBoardList(Model model) {
         List<Board> boardList = boardService.getBoardList();
 
         model.addAttribute("boardList", boardList);

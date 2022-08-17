@@ -2,6 +2,7 @@ package com.example.test01.controller.account_info;
 
 import com.example.test01.domain.account_info.Member;
 import com.example.test01.service.account_info.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import java.util.Date;
 //디스페처 서블릿이 컨트롤러를 찾기 위해 @Controller 선언
 @Controller
 @RequestMapping(path ="/account")
+@RequiredArgsConstructor
 public class MemberController {
 
     @Autowired
@@ -55,7 +57,6 @@ public class MemberController {
     public String deleteAccount(Member member) {
         memberService.deleteMember(member);
         return "redirect:/account/getAccountList";
-
     }
 
     //return 타입이 String인 이유 : HTML 파일명을 찾기 위해
@@ -74,10 +75,24 @@ public class MemberController {
         //updateDate
         member.setCreateDate(new Date());
         member.setUpdateDate(new Date());
+
         memberService.insertMember(member);
-        return "index";
+        return "redirect:/account/getAccountList";
+    }
+    @GetMapping("/selectAccount")
+    public String selectAccount() {
+        return "account/selectAccount";
+    }
+
+    @PostMapping("/selectAccount")
+    public String resultAccount(Member member, Model model) {
+        model.addAttribute("memberList",
+                memberService.getMemberWhereIdOrEmail(member.getEmail(), member.getId()));
+        return "account/resultAccount";
     }
 }
+
+
 
     //백업 entity
     //회원정보가 일정 수치까지 다다르면(혹은 이벤트가 발생 updageAccountALL이라는 메서드를 통해
