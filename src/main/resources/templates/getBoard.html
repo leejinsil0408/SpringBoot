@@ -11,7 +11,7 @@
 <h1 th:align="center">게시글 상세</h1>
 <main>
     <div class="row">
-        <div class="category">카테고리</div>
+        <div class="category" th:text="${board.category}"></div>
         <div class="title" th:text="${board.title}">제목입니다</div>
     </div>
     <div class="row between">
@@ -19,7 +19,7 @@
         <div class="fr">
             <div class="date fl" th:text="${board.createDate}">2022-08-09</div>
             <div class="cnt fl" th:text="${board.createDate}">
-                <b>조회 수</b>
+                <b>조회수</b>
                 <span th:text="${board.cnt}">12</span>
             </div>
         </div>

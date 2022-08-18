@@ -1,7 +1,7 @@
-package com.example.test01.service.account_info;
+package com.example.test01.service.account;
 
-import com.example.test01.domain.account_info.Member;
-import com.example.test01.persistence.account_info.MemberRepository;
+import com.example.test01.entity.account.Member;
+import com.example.test01.repository.account.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,12 +55,12 @@ public class MemberServicelmpl implements MemberService {
         //2. 가져온 튜플 정보 중 수정할 내용 적용
         //3. DB에 저장 (덮어쓰기)
         //findById().get() : 고유키 기준으로 튜플 전체 데이터 가져오기
-        Member findmember = memberRepo.findById(member.getSeq()).get();
+        Member findMember = memberRepo.findById(member.getSeq()).get();
         //튜플 전체 내용 중에 ID/email주소 수정하는 메서드 (setter)
-        findmember.setId(member.getId());
-        findmember.setEmail(member.getEmail());
+        findMember.setId(member.getId());
+        findMember.setEmail(member.getEmail());
         //CrudRepo의 save 메서드를 통해 데이터 저장
-        memberRepo.save(findmember);
+        memberRepo.save(findMember);
 
         //고유키
         //1. 튜플을 식별할 수 있는 값 (데이터 한 줄) : DB 관점

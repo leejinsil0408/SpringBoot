@@ -1,4 +1,4 @@
-package com.example.test01.domain;
+package com.example.test01.entity;
 
 /**
  * @package : com.example.Test01.controller
@@ -12,10 +12,10 @@ package com.example.test01.domain;
 
 //외장 라이브러리 (gradle로 다운로드한 롬북이 외장 라이브러리)
 //보드라는 객체에서 롬북(외부 라이브러리)가져다 사용. 임포트 쓰기
+import com.example.test01.entity.base.BaseTimeEntity;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
-import java.util.Date;
 
 
 //롬북에 있는 Getter라는 메서드를 통해 하단에 있는 클래스 Board는
@@ -27,7 +27,8 @@ import java.util.Date;
 @ToString
 @Setter
 @Entity
-public class Board {
+public class Board extends BaseTimeEntity {
+//테이블 구조를 바꾸지 않아도 됨.
 
     //@id : PK (primary key) SQL문의 기본키
     //@GeneratedValue 자동생성 속성
@@ -38,6 +39,9 @@ public class Board {
     @Column(length = 40, nullable = false)
     private String title;
 
+    @Column(length = 40, nullable = false)
+    private String category;
+
     @Column(nullable = false, updatable = false)
     private String writer;
 
@@ -47,8 +51,12 @@ public class Board {
     private String content;
 
     //타입이 날짜
-    @Temporal(TemporalType.DATE)
-    private Date createDate;
+//    @Temporal(TemporalType.DATE)
+//    private Date createDate;
+//
+//    @Temporal(TemporalType.DATE)
+//    private Date updateDate;
+    //w주석처리
 
     @ColumnDefault("0")
     @Column(insertable = false, updatable = false)

@@ -1,5 +1,6 @@
-package com.example.test01.domain.account_info;
+package com.example.test01.entity.account;
 
+import com.example.test01.entity.base.BaseTimeEntity;
 import lombok.*;
 import java.util.Date;
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import javax.persistence.*;
 @Entity // JPA가 이 객체를 기준으로 table을 만들어야 한다고 선언
 @Getter
 @Setter
-public class Member {
+public class Member extends BaseTimeEntity {
 
         //SELECT * 컬럼명 (= 객체의 필드) FROM TABLE_NAME * (객체);
         //CREATE TABLE (

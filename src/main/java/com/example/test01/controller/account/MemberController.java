@@ -1,7 +1,7 @@
-package com.example.test01.controller.account_info;
+package com.example.test01.controller.account;
 
-import com.example.test01.domain.account_info.Member;
-import com.example.test01.service.account_info.MemberService;
+import com.example.test01.entity.account.Member;
+import com.example.test01.service.account.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.List;
 import java.util.Date;
 
 //디스페처 서블릿이 컨트롤러를 찾기 위해 @Controller 선언

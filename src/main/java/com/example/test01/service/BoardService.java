@@ -10,7 +10,7 @@ package com.example.test01.service;
  * @description : 게시판 서비스
  **/
 
-import com.example.test01.domain.Board;
+import com.example.test01.entity.Board;
 import java.util.List;
 
 public interface BoardService {

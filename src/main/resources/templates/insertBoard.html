@@ -18,7 +18,10 @@
     <div class="row">
         <select class="col category">
             <option th:text="카테고리"></option>
-            <option value="1">카테고리 1</option>
+            <option value="1">상품</option>
+            <option value="2">배송</option>
+            <option value="3">교환/반품</option>
+            <option value="4">기타</option>
         </select>
         <input class="col title" name="title" type="text" th:placeholder="제목" th:value="${board == null ? '' : board.title}">
     </div>

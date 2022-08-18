@@ -1,7 +1,7 @@
-package com.example.test01.service.account_info;
+package com.example.test01.service.account;
 
 import java.util.List;
-import com.example.test01.domain.account_info.Member;
+import com.example.test01.entity.account.Member;
 
 public interface MemberService {
     //Email또는ID를 조회하여 튜플을 찾기

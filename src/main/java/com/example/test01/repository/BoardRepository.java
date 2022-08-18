@@ -1,4 +1,4 @@
-package com.example.test01.persistence;
+package com.example.test01.repository;
 
 /**
  * @package : com.example.Test01.persistence
@@ -10,7 +10,7 @@ package com.example.test01.persistence;
  * @description : 게시판 레포지토리
  **/
 
-import com.example.test01.domain.Board;
+import com.example.test01.entity.Board;
 import org.springframework.data.repository.CrudRepository;
 
 //CrudRepository를 상속받음 : entity를 매개체로 create, read, update, delete 기능을 하는 인터페이스

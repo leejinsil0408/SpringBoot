@@ -12,6 +12,7 @@
     <thead>
     <tr>
         <th scope="col" class="seq">번호</th>
+        <th scope="col" class="category">카테고리</th>
         <th scope="col" class="title">제목</th>
         <th scope="col" class="writer">작성자</th>
         <th scope="col" class="regdate">등록일</th>
@@ -32,6 +33,7 @@
         <td class="writer" th:text="${board.writer}"></td>
         <td class="regdate" th:text="${board.createDate}"></td>
         <td class="cnt" th:text="${board.cnt}"></td>
+        <td class="category" th:text="${board.category}"></td>
     </tr>
     </tbody>
 </table>

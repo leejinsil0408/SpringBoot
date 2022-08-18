@@ -10,11 +10,11 @@ package com.example.test01.service;
  * @description : 서비스 구현체
  **/
 
-import com.example.test01.domain.Board;
-import com.example.test01.persistence.BoardRepository;
-import com.example.test01.service.BoardService;
+import com.example.test01.entity.Board;
+import com.example.test01.repository.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 //JPA가 기능에 맞춰 SQL을 바꿔주는 기능.
@@ -50,6 +50,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public void updateBoard(Board board) {
         Board findBoard = boardRepo.findById(board.getSeq()).get();
+        findBoard.setCategory(board.getCategory());
         findBoard.setTitle(board.getTitle());
         findBoard.setContent(board.getContent());
         boardRepo.save(findBoard);
@@ -59,4 +60,5 @@ public class BoardServiceImpl implements BoardService {
     public void deleteBoard(Board board) {
         boardRepo.deleteById(board.getSeq());
     }
+
 }

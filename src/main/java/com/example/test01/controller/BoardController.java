@@ -10,7 +10,7 @@ package com.example.test01.controller;
  * @description : 게시판 컨트롤러
  */
 
-import com.example.test01.domain.Board;
+import com.example.test01.entity.Board;
 import com.example.test01.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
