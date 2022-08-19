@@ -1,4 +1,4 @@
-package com.example.test01.service;
+package com.example.test01.service.board;
 
 /**
  * @package : com.example.Test01.service
@@ -10,12 +10,13 @@ package com.example.test01.service;
  * @description : 게시판 서비스
  **/
 
-import com.example.test01.entity.Board;
+import com.example.test01.entity.board.Board;
+import com.example.test01.entity.board.Comments;
 import java.util.List;
 
 public interface BoardService {
 
-    List<Board> getBoardList();
+    List<Board> getBoardList(Board board);
 
     void insertBoard(Board board);
 
@@ -24,4 +25,6 @@ public interface BoardService {
     void updateBoard(Board board);
 
     void deleteBoard(Board board);
+
+    void insertComment(Comments comments);
 }

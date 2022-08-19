@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:align="center">
+<h1>게시글 상세</h1>
+<form th:action="@{/board/updateBoard}" method="post">
+    <input name="seq" type="hidden" th:value="${board.seq}">
+
+    <table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
+
+        <tr>
+            <td bgcolor="#add8e6" th:text="번호" width="80"></td>
+            <td th:text="${board.seq}"></td>
+        </tr>
+
+        <tr>
+            <td bgcolor="#add8e6" th:text="제목" width="80"></td>
+            <!--
+                [서버]에서 java의 데이터를 [클라이언트]html문서에 값을 할당해주는 문법${title}
+            -->
+            <td><input name="title" type="text" th:value="${board.title}"></td>
+        </tr>
+        <tr>
+            <td bgcolor="#add8e6" th:text="작성자"></td>
+            <td th:text="${board.writer}"></td>
+        </tr>
+        <tr>
+            <td bgcolor="#add8e6" th:text="내용"></td>
+            <td><textarea name="content" th:text="${board.content}" cols="40" rows="10"></textarea></td>
+        </tr>
+        <tr>
+            <td bgcolor="#add8e6" th:text="등록일"></td>
+            <td th:text="${board.createDate}"></td>
+        </tr>
+        <tr>
+            <td bgcolor="#add8e6" th:text="조회수"></td>
+            <td th:text="${board.cnt}"></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="게시글수정">
+            </td>
+        </tr>
+    </table>
+    </form>
+    <a th:href="@{/board/deleteBoard(seq=${board.seq})}">글삭제</a>
+    <a th:href="@{/board/getBoardList}">글목록</a>
+</body>
+</html>

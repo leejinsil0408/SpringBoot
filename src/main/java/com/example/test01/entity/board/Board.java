@@ -1,4 +1,4 @@
-package com.example.test01.entity;
+package com.example.test01.entity.board;
 
 /**
  * @package : com.example.Test01.controller
@@ -15,7 +15,11 @@ package com.example.test01.entity;
 import com.example.test01.entity.base.BaseTimeEntity;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
+import java.util.Date;
 
 
 //롬북에 있는 Getter라는 메서드를 통해 하단에 있는 클래스 Board는
@@ -24,27 +28,27 @@ import javax.persistence.*;
 
 //@Entity : 이 class가 JPA를 통해 데이터베이스 테이블로 쓰겠다고 명시 해주는 속성
 @Getter
-@ToString
 @Setter
+@ToString
 @Entity
 public class Board extends BaseTimeEntity {
 //테이블 구조를 바꾸지 않아도 됨.
 
     //@id : PK (primary key) SQL문의 기본키
     //@GeneratedValue 자동생성 속성
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     private Long seq;
 
+    @Setter
     //@Column은 title 필드값을 컴럼화할 때 길이와 null 입력 가능여부 옵션
     @Column(length = 40, nullable = false)
     private String title;
 
-    @Column(length = 40, nullable = false)
-    private String category;
-
     @Column(nullable = false, updatable = false)
     private String writer;
 
+    @Setter
     //@ColumnDefault 생성할 때 기본 데이터
     @Column(nullable = false)
     @ColumnDefault("'no content'")
@@ -58,6 +62,7 @@ public class Board extends BaseTimeEntity {
 //    private Date updateDate;
     //w주석처리
 
+    @Setter
     @ColumnDefault("0")
     @Column(insertable = false, updatable = false)
     private Long cnt;

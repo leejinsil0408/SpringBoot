@@ -2,39 +2,26 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/document.css">
-    <link rel="stylesheet" href="/css/comment.css">
-    <title>회원정보 상세</title>
+    <title>Title</title>
 </head>
 <body>
-<h1 th:action="@{/account/selectAccount}" method="post"></h1>
-<!--회원정보 같은 민감데이터는 가능한 암호화와 숨김 코드로 작성이 필요-->
-<main>
-    <div class="row">
-        <div class="category">카테고리</div>
-        <div class="title" th:text="${member.id}">아이디</div>
-    </div>
-    <div class="row between">
-        <div class="name fl" th:text="${member.password}">패스워드</div>
-        <div class="fr">
-            <div class="date fl" th:text="${member.createDate}">만든 날짜</div>
-            <b>수정한 날짜</b>
-            <span th:text="${member.updateDate}">12</span>
-        </div>
-    </div>
-    </div>
-    <article class="content" th:text="${member.content}"></article>
-    <div class="row between">
-        <a class="btn back fl" th:href="@{account/getAccountList}"></a>
-        <div class="row fr gap">
-            <a class="btn write fl" th:href="@{/account/updateAccount(seq=${member.seq})}"></a>
-            <form class="fl" action="deleteBoard" method="post">
-                <input type="hidden" name="seq" th:value="${member.seq}">
-                <button class="btn delete" onclick="this.submit()"></button>
-            </form>
-        </div>
-    </div>
-</main>
+<form th:action="@{/account/selectAccount}" method="post">
+    <table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
+        <tr>
+            <td bgcolor="#add8e6" th:text="ID" width="80"></td>
+            <td><input name="id" type="text" th:placeholder="ID" size="50"></td>
+
+        </tr>
+        <tr>
+            <td bgcolor="#add8e6" th:text="EMAIL" width="80"></td>
+            <td><input name="email" type="text" th:placeholder="EMAIL" size="50"></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="회원찾기">
+            </td>
+        </tr>
+    </table>
+</form>
 </body>
 </html>

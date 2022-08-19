@@ -2,34 +2,35 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/write.css">
-    <title th:text="${member == null ? '회원등록' : '회원수정'}"></title>
+    <title>회원정보 등록</title>
 </head>
 <body>
 <!--    board(객체).title(key)으로 board객체를 만들어서 서버에 전달-->
-<header>
-    <h3 th:text="${member == null ? '회원 등록하기' : '회원 수정하기'}"></h3>
-    <a th:if="${member == null}" class="btn back fl" th:href="@{/account/getAccountList}"></a>
-    <a th:unless="${member == null}" class="btn back fl" th:href="@{/account/getAccount(seq=${member.seq})}"></a>
-</header>
-<form id="write" th:action="${member == null ? 'insertAccount' : 'updateAccount'}" method="post">
-    <input th:if="${member} != null" type="hidden" name="seq" th:value="${member.seq}">
-    <div class="row">
-        <input class="col title" name="id" type="text" th:placeholder="아이디" th:value="${member == null ? '' : member.id}">
-    </div>
-    <textarea class="content" name="password" th:placeholder="패스워드" th:text="${member == null ? '' : member.password}"></textarea>
-    <div class="row between">
-    </div>
-    <input class="content" name="email" th:placeholder="이메일" th:text="${member == null ? '' : member.email}">
-    <div class="row between">
-    </div>
-    <input hidden class="content" name="createdate" th:placeholder="생성날짜" th:text="${member == null ? '' : member.createDate}">
-    <div class="row between">
-        <div class="row fr">
-            <button class="btn write fl" th:classappend="${member} != null ? 'update' : 'insert'" type="submit" onclick="this.submit()"></button>
-        </div>
-    </div>
+<!--1. DROP TABLE MEMBER;-->
+<!--2. HTML에서 name을 board.id > id (password)-->
+<form th:action="@{/account/insertAccount}" method="post">
+    <table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
+        <tr>
+            <td bgcolor="#add8e6" th:text="ID" width="80"></td>
+            <td><input name="id" type="text" th:placeholder="ID" size="50"></td>
+
+        </tr>
+        <tr>
+            <td bgcolor="#add8e6" th:text="PASSWORD" width="80"></td>
+            <td><input name="password" type="text" th:placeholder="PASSWORD" size="10"></td>
+        </tr>
+        <tr>
+            <td bgcolor="#add8e6" th:text="EMAIL" width="80"></td>
+            <td><input name="email" type="text" th:placeholder="EMAIL" size="50"></td>
+
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="회원등록">
+            </td>
+        </tr>
+    </table>
 </form>
+
 </body>
 </html>

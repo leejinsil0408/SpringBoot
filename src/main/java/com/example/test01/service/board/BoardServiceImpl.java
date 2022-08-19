@@ -1,4 +1,4 @@
-package com.example.test01.service;
+package com.example.test01.service.board;
 
 /**
  * @package : com.example.Test01.service
@@ -10,8 +10,10 @@ package com.example.test01.service;
  * @description : 서비스 구현체
  **/
 
-import com.example.test01.entity.Board;
-import com.example.test01.repository.BoardRepository;
+import com.example.test01.entity.board.Board;
+import com.example.test01.entity.board.Comments;
+import com.example.test01.repository.account.MemberRepository;
+import com.example.test01.repository.board.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,15 +24,17 @@ import java.util.List;
 @Service
 public class BoardServiceImpl implements BoardService {
 
+    private final BoardRepository boardRepo;
+
     @Autowired
-    private BoardRepository boardRepo;
+    protected BoardServiceImpl(BoardRepository boardRepo) { this.boardRepo = boardRepo; }
     //BoardRepository에 있는 DB와 연동하여 기능하는 것을 명시
 
     //클라이언트에서 받아온 Board객체의 데이터를 BoardRepository의 상속받은 CrudRepository의
     //findAll 메서드를 통해서 전체 조회
 
     @Override
-    public List<Board> getBoardList() {
+    public List<Board> getBoardList(Board board) {
         return (List<Board>) boardRepo.findAll();
     }
 
@@ -50,7 +54,7 @@ public class BoardServiceImpl implements BoardService {
     @Override
     public void updateBoard(Board board) {
         Board findBoard = boardRepo.findById(board.getSeq()).get();
-        findBoard.setCategory(board.getCategory());
+
         findBoard.setTitle(board.getTitle());
         findBoard.setContent(board.getContent());
         boardRepo.save(findBoard);
@@ -61,4 +65,7 @@ public class BoardServiceImpl implements BoardService {
         boardRepo.deleteById(board.getSeq());
     }
 
+    @Override
+    public void insertComment(Comments comments) {
+    }
 }

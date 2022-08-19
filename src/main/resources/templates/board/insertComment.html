@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/board/insertComment}" method="post">
+    <table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
+        <tr>
+            <td bgcolor="#add8e6" th:text="TITLE" width="80"></td>
+            <td><input name="title" type="text" th:placeholder="ID" size="50"></td>
+
+        </tr>
+        <tr>
+            <td bgcolor="#add8e6" th:text="COMMENT" width="80"></td>
+            <td><input name="comments" type="text" th:placeholder="PASSWORD" size="10"></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="코멘트등록">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

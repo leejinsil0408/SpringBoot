@@ -33,11 +33,12 @@ public class Member extends BaseTimeEntity {
 
         private String email;
 
-        @Setter
-        @Temporal(TemporalType.DATE)
-        private Date createDate;
-
-        @Setter
-        @Temporal(TemporalType.DATE)
-        private Date updateDate;
+//        @Setter
+//        @Temporal(TemporalType.DATE)
+//        private Date createDate;
+//
+//        @Setter
+//        @Temporal(TemporalType.DATE)
+//        private Date updateDate;
+//
 }

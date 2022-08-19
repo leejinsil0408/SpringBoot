@@ -1,7 +1,9 @@
 package com.example.test01.controller.account;
 
 import com.example.test01.entity.account.Member;
+import com.example.test01.repository.account.MemberRepository;
 import com.example.test01.service.account.MemberService;
+import com.example.test01.service.account.MemberServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,11 +17,12 @@ import java.util.Date;
 //디스페처 서블릿이 컨트롤러를 찾기 위해 @Controller 선언
 @Controller
 @RequestMapping(path ="/account")
-@RequiredArgsConstructor
 public class MemberController {
+    private final MemberService memberService;
 
     @Autowired
-    private MemberService memberService;
+    protected MemberController(MemberService memberService) {
+        this.memberService = memberService; }
 
     //(클라이언트가 두 분류) 게시판 : 사용자관점
     //게시판 : 사용자 관점, 시스템 관리 관점(회원 관리, 게시판 관리, 콘텐츠 관리) [ 웹 솔루션을 관리하는 오너 ]
@@ -40,6 +43,7 @@ public class MemberController {
     //model : 서버에서 클라이언트로 데이터를 전송하는 매개체
     @GetMapping("/getAccount")
     public String getAccount(Member member, Model model) {
+        System.out.println("-----------getAccount----------");
         model.addAttribute("member", memberService.getMember(member));
         return "/account/getAccount";
     }
@@ -47,6 +51,10 @@ public class MemberController {
     //updateAccount : 회원 정보 수정
     @PostMapping("/updateAccount")
     public String updateAccount(Member member) {
+        System.out.println("--------------");
+        System.out.println(member.getSeq());
+        System.out.println(member.getId());
+        System.out.println(member.getEmail());
         memberService.updateMember(member);
         return "redirect:/account/getAccountList";
     }
@@ -54,6 +62,7 @@ public class MemberController {
     //deleteAccount : 회원 정보 삭제
     @GetMapping("/deleteAccount")
     public String deleteAccount(Member member) {
+        System.out.println("-------delete-------");
         memberService.deleteMember(member);
         return "redirect:/account/getAccountList";
     }
@@ -72,9 +81,6 @@ public class MemberController {
         //클아이언트에서 ID/PW
         //createDate
         //updateDate
-        member.setCreateDate(new Date());
-        member.setUpdateDate(new Date());
-
         memberService.insertMember(member);
         return "redirect:/account/getAccountList";
     }
@@ -85,7 +91,7 @@ public class MemberController {
 
     @PostMapping("/selectAccount")
     public String resultAccount(Member member, Model model) {
-        model.addAttribute("memberList",
+        model.addAttribute("member",
                 memberService.getMemberWhereIdOrEmail(member.getEmail(), member.getId()));
         return "account/resultAccount";
     }

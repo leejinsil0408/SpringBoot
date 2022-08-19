@@ -1,50 +1,41 @@
 <!DOCTYPE html>
+<!--타임리프 선언 (사용하겠다는 선언)-->
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/board.css">
-    <title>회원정보 목록</title>
+    <link rel="stylesheet" type="text/css" href="/css/default.css">
+    <title>Title</title>
 </head>
-<body>
-<h1>회원정보 목록</h1>
-<table id="board">
-    <thead>
+<!--<p class="test">test color</p>-->
+<body th:align="center">
+<h1>회원목록</h1>
+<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0" th:width="700">
     <tr>
-        <th scope="col" class="seq">번호</th>
-        <th scope="col" class="title">아이디</th>
-        <th scope="col" class="writer">비밀번호</th>
-        <th scope="col" class="regdate">생성날짜</th>
-        <th scope="col" class="email">이메일</th>
+        <th bgcolor="#add8e6" width="100">번호</th>
+        <th bgcolor="#add8e6" width="200">ID</th>
+        <th bgcolor="#add8e6" width="150">Email</th>
+        <th bgcolor="#add8e6" width="150">비고</th>
     </tr>
-    </thead>
-    <tbody>
-    <tr th:each="member : ${memberList}">
-        <td class="seq" th:text="${member.seq}"></td>
-        <td class="title">
-            <!--account/getAccountList에서 getAccount호출할 때
-            기본 시작점이 templates이기 때문에
-            절대 경로 일 경우 templates에서 시작하며, 상대경로이면 getAccountList페이지가 있는 폴더에서 시작
-            /를 앞에 붙힐 경우 : 절대경로
-            /를 앞에 "안"붙힐 경우 : 상대경로-->
+    <tr th:each="member :${memberList}">
+        <td th:text="${member.seq}"></td>
+        <td> <a th:text="${member.id}"></a></td>
+        <td th:text="${member.email}"></td>
+        <td>
+            <!--      account/getAccountList에서 getAccount호출할 때-->
+            <!--      기본 시작점이 templates이기 때문에 -->
+            <!--      절대 경로 일 경우 templates에서 시작하며, 상대경로이면 getAccountList페이지가 있는 폴더에서 시작-->
+            <!--      /를 앞에 붙힐 경우 : 절대경로-->
+            <!--      /를 앞에 "안"붙힐 경우 : 상대경로-->
             <a th:href="@{/account/getAccount(seq=${member.seq})}">
-                <span th:text="${member.id}"></span>
-                <div class="summary">
-                    <div>요약입니다.</div>
-                </div>
+                <button>상세정보</button>
+            </a>
+            <a th:href="@{/account/deleteAccount(seq=${member.seq})}">
+                <button>삭제하기</button>
             </a>
         </td>
-        <td class="writer" th:text="${member.password}"></td>
-        <td class="cnt" th:text="${member.email}"></td>
-        <td class="regdate" th:text="${member.createDate}"></td>
     </tr>
-    </tbody>
 </table>
-<div class="btn_area clear">
-    <div class="fr">
-        <a class="btn write" th:href="@{/account/insertAccount}">회원등록</a>
-        <a class="btn write" th:href="@{/account/selectAccount}">회원찾기</a>
-    </div>
-</div>
+<a th:href="@{/account/insertAccount}">회원등록</a>
+<a th:href="@{/account/selectAccount}">회원찾기</a>
 </body>
 </html>

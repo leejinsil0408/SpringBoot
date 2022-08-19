@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body th:align="center">
+<h1>게시글 등록</h1>
+<!--
+    [클라이언트] html의 form태그를 통한 submit액션을 실행하면 [서버]로 전달되는 mapping주소
+    th:action="insertBoard"
+    mothod="post" // get/post방식으로 데이터 전달 명시하다
+    [서버]컨트롤러에서는 get방식 받는 것과 post방식으로 받는 것을 구분할 수 있습니다
+-->
+<form th:action="@{/board/insertBoard}" method="post">
+    <table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0">
+        <tr>
+            <td bgcolor="#add8e6" th:text="제목" width="80"></td>
+            <!--
+                [클라이언트]name="title" 은 [서버]에서 데이터 매개변수를 받기 위한 변수명(key)
+            -->
+            <td><input name="title" type="text" size="50"></td>
+        </tr>
+        <tr>
+            <td bgcolor="#add8e6" th:text="작성자" width="80"></td>
+            <td><input name="writer" type="text" size="10"></td>
+        </tr>
+        <tr>
+            <td bgcolor="#add8e6" th:text="내용" width="80"></td>
+            <td><textarea name="content" cols="50" rows="10"></textarea>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="게시글 등록">
+            </td>
+        </tr>
+    </table>
+</form>
+<a th:href="@{/board/getBoardList}">글목록</a>
+</body>
+</html>

@@ -8,14 +8,15 @@
 </head>
 <body>
 <p><h1>true Lee Page</h1></p>
-<a href="/getBoardList">게시글목록</a>
-<a href="/account/insertAccount">회원가입</a>
-<a href="/account/getAccountList">회원목록</a>
-<a href="/hello">hello!</a>
+<a href="/account/getAccountList">회원목록 연결</a>
+</br>
+<a href="/board/getBoardList">게시판 연결</a>
+</br>
+<a href="https://naver.com">naver 웹사이트 연결</a>
 <hr>
 <p th:text="${msg}"></p>
 <h1>회원가입</h1>
-<form method="POST" action="/account">
+<form method="POST" action="/index">
     <!------input태그의 id1변수이름으로 데이터를 서버에 전달하고------>
     <!------서버 model에서 받아온 id2변수이름으로 데이터를 html에 출력------>
     <input type="text" name="id1" th:value="${id2}" />

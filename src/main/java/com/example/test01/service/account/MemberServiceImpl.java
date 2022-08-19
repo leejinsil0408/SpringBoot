@@ -8,17 +8,19 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MemberServicelmpl implements MemberService {
+public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepo;
 
+    //순환참조 중단
     @Autowired
-    protected MemberServicelmpl(MemberRepository memberRepo) {this.memberRepo = memberRepo; }
+    protected MemberServiceImpl(MemberRepository memberRepo) {this.memberRepo = memberRepo; }
+
     //public : 공개
     //List<Member> : 리턴타입은 List 속성은 Member
     //retrun memberRepository의 findMemberByEmailOrId메서드를 실행한 리턴 데이터
     @Override
-    public List<Member> getMemberWhereIdOrEmail(String Email, String Id) {
+    public Member getMemberWhereIdOrEmail(String Email, String Id) {
         return memberRepo.findMemberByEmailOrId(Email, Id);
     }
 
@@ -79,8 +81,19 @@ public class MemberServicelmpl implements MemberService {
     }
 
     @Override
-    public void deleteMember(Member member) {
+    public void deleteMember(Member member) { memberRepo.deleteById(member.getSeq()); }
 
-        memberRepo.deleteById(member.getSeq());
+
+    @Override
+    public boolean searchUserYnUseEmail(Member member) {return false; }
+
+    @Override
+    public boolean searchUserYnUseId(Member member) {
+        return false;
+    }
+
+    @Override
+    public boolean searchUserYnUsePassword(Member member) {
+        return false;
     }
 }
