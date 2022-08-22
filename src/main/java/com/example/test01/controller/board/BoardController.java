@@ -10,6 +10,7 @@ package com.example.test01.controller.board;
  * @description : 게시판 컨트롤러
  */
 
+import com.example.test01.entity.account.Member;
 import com.example.test01.entity.board.Board;
 import com.example.test01.entity.board.Comments;
 import com.example.test01.service.board.BoardService;
@@ -101,9 +102,25 @@ public class BoardController {
 
     @PostMapping("/deleteBoard")
     public String deleteBoard(Board board) {
-        System.out.println("--------boarde delete-----------");
+        System.out.println("--------board delete-----------");
         System.out.println(board.getSeq());
         boardService.deleteBoard(board);
         return "redirect:/board/getBoardList";
+    }
+
+    @GetMapping("/selectBoard") //최종적으로 model도 리턴
+    public String selectBoard(Member member, Model model ) {
+        System.out.println("--------board select-----------");
+        //board.getId()는 클라이언트에서 가져옴
+        //@Service에 board를 인자값으로 넣고 메서드 실행
+        boardService.getBoardListByMemberId(member);
+        model.addAttribute("boardList",boardService.getBoardListByMemberId(member));
+
+        //회원이 작성한 게시글 리스트(List<Board>) 리턴 --> HTML에 뿌려주면 끝
+        // 이유 : Controller에 가면 메서드가 실행돼서 다른 결과물을 리턴받기 때문
+        // 어느 HTML로 가냐? 객체지향은 재활용성이 중요한 요인 중 하나
+        //HTML 중에 재사용 할만한 것을 먼저 찾고, 그 후에 새로 만들기에 대해 고민 : getBoardList 재활용
+        //최종적으로 무엇을 리턴? return 페이지 OR controller mapping
+        return "/board/getBoardList";
     }
 }

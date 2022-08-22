@@ -25,16 +25,15 @@ public interface MemberService {
     //결과값 : 입력받은 정보(email, id, pw)가 유사 사실 유무 확인 후
     //비밀번호 변경(updateMember의 password)
 
-    boolean searchUserYnUseEmail(Member member);
-    boolean searchUserYnUseId(Member member);
-    boolean searchUserYnUsePassword(Member member);
-
+    boolean booleanSearchUserByEmail(Member member);
+    boolean booleanSearchUserById(Member member);
+    boolean booleanSearchUserByPassword(Member member);
 
 //    //별표처리 MemberList (replace..) (6조)
-//    List<Member> getMemberListEmailSecurityStarByMemberList(List<Member> memberlist);
+List<Member> getMemberListEmailSecurityStarByMemberList(List<Member> memberlist);
 //
 //    //민감데이터 (SHA256..)
-//    List<Member> getMemberListEncodingByMemberList(List<Member> memberlist);
+List<Member> getMemberListEncodingByMemberList(List<Member> memberlist);
 //
 //    //작성자의 모든 게시글 출력 (2,5조)
 //    List<Member> getBoardWhereMemberId(Member member);
@@ -54,12 +53,11 @@ public interface MemberService {
 //    boolean --(Member member);
 //
 //    //30일 지난 회원에게 변경 페이지 안내
-//    boolean booleanAfter30DayChangePasswordByMemberUpdateDate(Member member);
+boolean booleanAfter30DaysChangePasswordByMemberUpdateDate(Member member);
 //
 //    //비밀번호 변경 테이블 생성 후 변경한 기록을 남긴 뒤, 변경 내용 최신 3회 내용과 비교
-//    boolean boolean booleanChangePassword3CheckByMemberPassword(Member member);
-//    List<Member> getBoardLatestBoardList(Member member);
+boolean booleanChangedPassword3CheckByMemberPassword(Member member);
 //
 //
-//    // 껍데기 만들고 Impl에서 오버라이드 구현하면 끝
+//껍데기 만들고 Impl에서 오버라이드 구현하면 끝
 }

@@ -10,6 +10,7 @@ package com.example.test01.service.board;
  * @description : 서비스 구현체
  **/
 
+import com.example.test01.entity.account.Member;
 import com.example.test01.entity.board.Board;
 import com.example.test01.entity.board.Comments;
 import com.example.test01.repository.account.MemberRepository;
@@ -67,5 +68,36 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public void insertComment(Comments comments) {
+        //boolean title 체크
+        //insert comment 실행
+        //트랜젝션 처리
+    }
+
+    @Override
+    public boolean booleanMemberIdEqualsBoardWriterByMember(Member member) {
+        return false;
+    }
+
+    @Override
+    public List<Board> getBoardListByMemberId(Member member) {
+        //Repository
+        System.out.println("----getBoardListByMemberId----");
+        System.out.println(member.getId());
+        return boardRepo.findAllByMemberIdEqualsBoardWriter(member.getId());
+    }
+
+    @Override
+    public List<String> doNounsAnalysis(List<Board> boardlist) {
+        return null;
+    }
+
+    @Override
+    public List<Board> getAutoKeywordBoardList(List<String> keyword) {
+        return null;
+    }
+
+    @Override
+    public List<Board> getBoardListSortColumnByBoardList(List<Board> boardlist) {
+        return null;
     }
 }

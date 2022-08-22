@@ -17,6 +17,7 @@ public class Comments extends BaseTimeEntity {
 
     @Id
     private Long seq;
+
     private String Comments;
 
     @ManyToOne

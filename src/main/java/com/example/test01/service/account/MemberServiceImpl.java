@@ -2,6 +2,7 @@ package com.example.test01.service.account;
 
 import com.example.test01.entity.account.Member;
 import com.example.test01.repository.account.MemberRepository;
+import com.example.test01.service.encrypt.EncryptAES256;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,14 @@ public class MemberServiceImpl implements MemberService {
 
     private final MemberRepository memberRepo;
 
+    private final EncryptAES256 encryptAES256;
+
     //순환참조 중단
     @Autowired
-    protected MemberServiceImpl(MemberRepository memberRepo) {this.memberRepo = memberRepo; }
+    protected MemberServiceImpl(MemberRepository memberRepo, EncryptAES256 encryptAES256) {
+        this.encryptAES256 = encryptAES256;
+        this.memberRepo = memberRepo;
+    }
 
     //public : 공개
     //List<Member> : 리턴타입은 List 속성은 Member
@@ -49,7 +55,8 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public Member getMember(Member member) {
-        return memberRepo.findById(member.getSeq()).get();}
+        return memberRepo.findById(member.getSeq()).get();
+    }
 
     @Override
     public void updateMember(Member member) {
@@ -81,19 +88,53 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public void deleteMember(Member member) { memberRepo.deleteById(member.getSeq()); }
-
-
-    @Override
-    public boolean searchUserYnUseEmail(Member member) {return false; }
+    public void deleteMember(Member member) {
+        memberRepo.deleteById(member.getSeq());
+    }
 
     @Override
-    public boolean searchUserYnUseId(Member member) {
+    public boolean booleanSearchUserByEmail(Member member) {
         return false;
     }
 
     @Override
-    public boolean searchUserYnUsePassword(Member member) {
+    public boolean booleanSearchUserById(Member member) {
         return false;
     }
+
+    @Override
+    public boolean booleanSearchUserByPassword(Member member) {
+        return false;
+    }
+
+    @Override
+    public List<Member> getMemberListEmailSecurityStarByMemberList(List<Member> memberList) {
+        return null;
+    }
+
+    @Override
+    public List<Member> getMemberListEncodingByMemberList(List<Member> memberList) {
+        for(Member member : memberList) {
+            try {
+                member.setPassword(encryptAES256.encrypt(member.getPassword()));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return memberList;
+
+    }
+
+    @Override
+    public boolean booleanAfter30DaysChangePasswordByMemberUpdateDate(Member member) {
+        return false;
+    }
+
+    @Override
+    public boolean booleanChangedPassword3CheckByMemberPassword(Member member) {
+        return false;
+    }
+
+
 }
+

@@ -35,7 +35,10 @@ public class MemberController {
         //attributeName(key) : 뒤에 있는 value를 호출하기 위한 문자열(key)
         //memberService.getMemberList() : @Autowred로 선언된 MemberService 클래스 호출하여
         //getMemberList()메서드 실행
-        model.addAttribute("memberList", memberService.getMemberList());
+//        model.addAttribute("memberList", memberService.getMemberList());
+        model.addAttribute("memberList",
+                memberService.getMemberListEncodingByMemberList(
+                    memberService.getMemberList()));
         return "/account/getAccountList";
     }
 

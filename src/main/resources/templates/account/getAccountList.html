@@ -14,12 +14,14 @@
         <th bgcolor="#add8e6" width="100">번호</th>
         <th bgcolor="#add8e6" width="200">ID</th>
         <th bgcolor="#add8e6" width="150">Email</th>
+        <th bgcolor="#add8e6" width="150">비밀번호</th>
         <th bgcolor="#add8e6" width="150">비고</th>
     </tr>
     <tr th:each="member :${memberList}">
         <td th:text="${member.seq}"></td>
         <td> <a th:text="${member.id}"></a></td>
         <td th:text="${member.email}"></td>
+        <td th:text="${member.password}"></td>
         <td>
             <!--      account/getAccountList에서 getAccount호출할 때-->
             <!--      기본 시작점이 templates이기 때문에 -->

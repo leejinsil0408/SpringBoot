@@ -12,6 +12,7 @@ package com.example.test01.entity.board;
 
 //외장 라이브러리 (gradle로 다운로드한 롬북이 외장 라이브러리)
 //보드라는 객체에서 롬북(외부 라이브러리)가져다 사용. 임포트 쓰기
+import com.example.test01.entity.account.Member;
 import com.example.test01.entity.base.BaseTimeEntity;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -31,6 +32,9 @@ import java.util.Date;
 @Setter
 @ToString
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Board extends BaseTimeEntity {
 //테이블 구조를 바꾸지 않아도 됨.
 
@@ -53,6 +57,15 @@ public class Board extends BaseTimeEntity {
     @Column(nullable = false)
     @ColumnDefault("'no content'")
     private String content;
+
+    //다양한 board는 1개의 member를 바라본다
+    //member를 필드에 선언
+    //참조키가 어디인지 선언 (member 기본키가 board 참조키로 기본적으로 할당)
+    //board의 writer는 member의 id와 연관되어 있고, 참조키로 id로 연결되어 있다.
+    @ManyToOne
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private Member member;
+
 
     //타입이 날짜
 //    @Temporal(TemporalType.DATE)
