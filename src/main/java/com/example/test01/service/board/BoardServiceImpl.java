@@ -28,7 +28,8 @@ public class BoardServiceImpl implements BoardService {
     private final BoardRepository boardRepo;
 
     @Autowired
-    protected BoardServiceImpl(BoardRepository boardRepo) { this.boardRepo = boardRepo; }
+    protected BoardServiceImpl(BoardRepository boardRepo) {
+        this.boardRepo = boardRepo; }
     //BoardRepository에 있는 DB와 연동하여 기능하는 것을 명시
 
     //클라이언트에서 받아온 Board객체의 데이터를 BoardRepository의 상속받은 CrudRepository의

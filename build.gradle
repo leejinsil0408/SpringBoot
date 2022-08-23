@@ -40,7 +40,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     //starter : springboot에서 쓰는 기본 라이브러리의 집합. web에 tomcat이 포함되어있음
     //tomcat : spring 프로젝트를 웹하고 연결해주는 도구
-    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     //JPA : Java Persistence API : 자바에서 DB와 연결되는 객체지향 API (인터페이스)
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'

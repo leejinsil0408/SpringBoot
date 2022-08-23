@@ -48,16 +48,15 @@ List<Member> getMemberListEncodingByMemberList(List<Member> memberlist);
 //
 //    //email @앞의 문자열과 id가 동일할 경우 (1조)
 //    boolean booleanEmailEqualsIdByMemberEmail(List<>)
-//
-//    //id와 pw가 동일할 경우
-//    boolean --(Member member);
-//
-//    //30일 지난 회원에게 변경 페이지 안내
+
+//id와 pw가 동일할 경우
+//boolean --(Member member);
+
+    //30일 지난 회원에게 변경 페이지 안내
 boolean booleanAfter30DaysChangePasswordByMemberUpdateDate(Member member);
-//
-//    //비밀번호 변경 테이블 생성 후 변경한 기록을 남긴 뒤, 변경 내용 최신 3회 내용과 비교
+
+    //비밀번호 변경 테이블 생성 후 변경한 기록을 남긴 뒤, 변경 내용 최신 3회 내용과 비교
+
 boolean booleanChangedPassword3CheckByMemberPassword(Member member);
-//
-//
 //껍데기 만들고 Impl에서 오버라이드 구현하면 끝
 }

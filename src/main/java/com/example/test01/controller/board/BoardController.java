@@ -100,7 +100,7 @@ public class BoardController {
         return "/board/insertBoard";
     }
 
-    @PostMapping("/deleteBoard")
+    @GetMapping("/deleteBoard")
     public String deleteBoard(Board board) {
         System.out.println("--------board delete-----------");
         System.out.println(board.getSeq());
