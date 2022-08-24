@@ -36,11 +36,19 @@ public class BoardController {
     @Autowired
     protected BoardController(BoardService boardService) { this.boardService = boardService; }
 
-    @PostMapping("/insertComment")
+    @PostMapping("/insertComments")
         public String insertComment(Comments comments, Model model) {
         boardService.insertComment(comments);
-        return "redirect:/board/getBoardList";
+        return "/board/insertComments";
         }
+
+        //board Seq 전달하면 전체 comments를 불러오는 controller method
+    @GetMapping("/getCommentsList")
+    public String getCommentsList(Comments comments, Model model) {
+                                                    //서비스로직에서 연산작업. 영역별 기능을 나눴는데 스파게티 코드가 될 문제를 줄이기 위함
+    model.addAttribute("commentsList",boardService.getAllComments(comments));
+        return "/board/getCommentsList";
+    }
 
     //BoardService의 getBoardList메서드 실행 > BoardRepository(CrudRepository).findAll()를 통해서 (JPA번역)
     //DB의 데이터 불러오기(테이블전체) (SQL)

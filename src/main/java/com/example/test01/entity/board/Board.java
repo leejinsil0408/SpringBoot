@@ -20,7 +20,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.*;
 
 
 //롬북에 있는 Getter라는 메서드를 통해 하단에 있는 클래스 Board는
@@ -51,6 +51,10 @@ public class Board extends BaseTimeEntity {
 
     @Column(nullable = false, updatable = false)
     private String writer;
+
+    @OneToMany(mappedBy = "board")
+    private List<Comments> commentsList= new ArrayList<>();
+
 
     @Setter
     //@ColumnDefault 생성할 때 기본 데이터

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--타임리프 선언 (사용하겠다는 선언)-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/css/default.css">
+    <title>Title</title>
+</head>
+<!--<p class="test">test color</p>-->
+<body th:align="center">
+<h1>게시글 목록</h1>
+<table th:align="center" border="1" th:cellpadding="0" th:cellspacing="0" th:width="700">
+    <tr>
+        <th bgcolor="#add8e6" width="100">번호</th>
+        <th bgcolor="#add8e6" width="200">제목</th>
+        <th bgcolor="#add8e6" width="150">작성자</th>
+        <th bgcolor="#add8e6" width="150">Comments</th>
+    </tr>
+    <tr th:each="Comments :${CommentsList}">
+        <td th:text="${Comments.seq}"></td>
+        <td th:text="${Comments.board.title}"></td>
+        <td th:text="${comments.board.writer}"></td>
+        <td th:text="${Comments.comments}"></td>
+    </tr>
+</table>
+<a th:href="@{/board/insertBoard}">글등록</a>
+<a th:href="@{/account/getAccountList}">회원목록</a>
+</body>
+</html>
