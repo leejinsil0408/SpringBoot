@@ -52,8 +52,8 @@ public class Board extends BaseTimeEntity {
     @Column(nullable = false, updatable = false)
     private String writer;
 
-    @OneToMany(mappedBy = "board")
-    private List<Comments> commentsList= new ArrayList<>();
+//    @OneToMany(mappedBy = "board")
+//    private List<Comments> commentsList= new ArrayList<>();
 
 
     @Setter

@@ -14,7 +14,7 @@ import com.example.test01.entity.account.Member;
 import com.example.test01.entity.board.Board;
 import com.example.test01.entity.board.Comments;
 import com.example.test01.repository.board.BoardRepository;
-import com.example.test01.repository.board.CommentsRepository;
+//import com.example.test01.repository.board.CommentsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,11 +26,12 @@ import java.util.List;
 public class BoardServiceImpl implements BoardService {
 
     private final BoardRepository boardRepo;
-    private final CommentsRepository commentsRepository;
+//    private final CommentsRepository commentsRepository;
 
     @Autowired
-    protected BoardServiceImpl(BoardRepository boardRepo, CommentsRepository commentsRepository, CommentsRepository commentsRepository1) {
-        this.commentsRepository = commentsRepository;
+    protected BoardServiceImpl(BoardRepository boardRepo) {
+//    protected BoardServiceImpl(BoardRepository boardRepo, CommentsRepository commentsRepository, CommentsRepository commentsRepository1) {
+////        this.commentsRepository = commentsRepository;
         this.boardRepo = boardRepo;
     }
 
@@ -106,8 +107,8 @@ public class BoardServiceImpl implements BoardService {
         return null;
     }
 
-    @Override
-    public List<Comments> getAllComments(Comments comments) {
-        return commentsRepository.findCommentByBoard_seq(comments.getBoard_seq());
-    }
+//    @Override
+//    public List<Comments> getAllComments(Comments comments) {
+//        return commentsRepository.findCommentByBoard_seq(comments.getBoard_seq());
+//    }
 }

@@ -22,10 +22,14 @@ public class Comments extends BaseTimeEntity {
 //    @JoinColumn(name = "id", referencedColumnName = "id")
 //    private Member member;
 
-    @Transient
+//    @Transient
     private Long board_seq;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "board_seq",referencedColumnName = "seq")
-    private Board board;
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+//    @JoinColumn(name = "board_seq",referencedColumnName = "seq")
+//    private Board board;
+@ManyToOne
+@JoinColumn(referencedColumnName = "title")
+private Board board;
+
 }
