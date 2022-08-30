@@ -14,8 +14,12 @@ import java.util.Date;
 
 
 //JPA Entity 클래스들이 BaseTimeEntity를 상속할 때 createDate,modifiedDate도 컬럼으로 인식
+//BaseEntity에 Auditing 기능을 포함 시킨다.
+//@EntityListeners 는 리스너 클래스 지정을 통해 엔티티 객체 상태가 변경될 때 해당 리스너로 콜백을 받는다.
 //AuditingEntityListener는 JPA 내부에서 Entity 객체가 생성/변경되는 것을 감지
 
+
+    @EntityListeners(AuditingEntityListener.class)
     @Setter
     @Getter
     @MappedSuperclass
@@ -29,10 +33,3 @@ import java.util.Date;
         @LastModifiedDate
         private Date updateDate;
     }
-
-//    @CreatedDate
-//    private Date createDate;
-//
-//    @LastModifiedDate
-//    private Date updateDate;
-

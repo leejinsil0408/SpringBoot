@@ -30,7 +30,7 @@ dependencies {
     // (단, 컴파일에서만)
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor('org.projectlombok:lombok')
-
+    implementation 'org.projectlombok:lombok:1.18.24'
     //라이브러리 : 갖다 쓰는 것(자바 기본 규칙에 따름)
     //프레임워크 : 뼈대,프레임워크의 독자적인 구조와 규칙에 따름
 
@@ -44,6 +44,12 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     //JPA : Java Persistence API : 자바에서 DB와 연결되는 객체지향 API (인터페이스)
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    //Selenium
+    implementation 'org.seleniumhq.selenium:selenium-java'
+
+    //Gson 라이브러리
+    implementation 'com.google.code.gson:gson'
 
     //유닛테스트 (자바코드를 만들면 잘 돌아가는지 기능별로 테스트 할 때 쓰는 용도)
 //    testImplementation 'junit:junit'

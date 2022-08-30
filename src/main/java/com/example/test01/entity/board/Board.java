@@ -20,6 +20,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 
@@ -35,7 +36,7 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Board extends BaseTimeEntity {
+public class Board extends BaseTimeEntity implements Serializable {
 //테이블 구조를 바꾸지 않아도 됨.
 
     //@id : PK (primary key) SQL문의 기본키
@@ -52,8 +53,14 @@ public class Board extends BaseTimeEntity {
     @Column(nullable = false, updatable = false)
     private String writer;
 
-//    @OneToMany(mappedBy = "board")
-//    private List<Comments> commentsList= new ArrayList<>();
+
+    //다양한 board는 1개의 member를 바라본다
+    //member를 필드에 선언
+    //참조키가 어디인지 선언 (member 기본키가 board 참조키로 기본적으로 할당)
+    //board의 writer는 member의 id와 연관되어 있고, 참조키로 id로 연결되어 있다.
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private Member member;
 
 
     @Setter
@@ -61,14 +68,6 @@ public class Board extends BaseTimeEntity {
     @Column(nullable = false)
     @ColumnDefault("'no content'")
     private String content;
-
-    //다양한 board는 1개의 member를 바라본다
-    //member를 필드에 선언
-    //참조키가 어디인지 선언 (member 기본키가 board 참조키로 기본적으로 할당)
-    //board의 writer는 member의 id와 연관되어 있고, 참조키로 id로 연결되어 있다.
-    @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "id")
-    private Member member;
 
 
     //타입이 날짜

@@ -13,6 +13,8 @@ package com.example.test01.service.board;
 import com.example.test01.entity.account.Member;
 import com.example.test01.entity.board.Board;
 import com.example.test01.entity.board.Comments;
+import com.example.test01.entity.customDto.CustomDtoSortPages;
+
 import java.util.List;
 
 public interface BoardService {
@@ -44,6 +46,13 @@ public interface BoardService {
     //오름차순으로 변경 (arrayList)
     List<Board> getBoardListSortColumnByBoardList(List<Board> boardlist);
 
-//    List<Comments> getAllComments(Comments board_seq);
+    //작성자의 모든 게시글 출력
+    List<Board> getBoardListAllBoardListByMemberId(Member member);
+
+    List<List<Object>> getBoardAndMemberUsersBoard();
+
+    List<Comments> getAllComments(Comments comments);
+
+    CustomDtoSortPages getPagesSortIndex(Board board);
 }
 

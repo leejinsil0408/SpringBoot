@@ -2,6 +2,7 @@ package com.example.test01.service.account;
 
 import java.util.List;
 import com.example.test01.entity.account.Member;
+import com.example.test01.entity.customDto.CustomDtoExample;
 
 public interface MemberService {
 
@@ -59,4 +60,9 @@ boolean booleanAfter30DaysChangePasswordByMemberUpdateDate(Member member);
 
 boolean booleanChangedPassword3CheckByMemberPassword(Member member);
 //껍데기 만들고 Impl에서 오버라이드 구현하면 끝
+
+List<Member> getMemberListAndBoardListByMemberId(String memberId);
+
+CustomDtoExample getCustomDtoByMemberId(String memberId);
+
 }

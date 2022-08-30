@@ -2,6 +2,7 @@ package com.example.test01.service.account;
 
 import com.example.test01.entity.account.Member;
 import com.example.test01.repository.account.MemberRepository;
+import com.example.test01.repository.custom.CustomDtoExampleRepository;
 import com.example.test01.service.encrypt.EncryptAES256;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,14 @@ public class MemberServiceImpl implements MemberService {
 
     private final EncryptAES256 encryptAES256;
 
+    private final CustomDtoExampleRepository customDtoExampleRepository;
+
     //순환참조 중단
     @Autowired
-    protected MemberServiceImpl(MemberRepository memberRepo, EncryptAES256 encryptAES256) {
+    protected MemberServiceImpl(MemberRepository memberRepo, EncryptAES256 encryptAES256, CustomDtoExampleRepository customDtoExampleRepository) {
         this.encryptAES256 = encryptAES256;
         this.memberRepo = memberRepo;
+        this.customDtoExampleRepository = customDtoExampleRepository;
     }
 
     //public : 공개
@@ -94,21 +98,46 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public boolean booleanSearchUserByEmail(Member member) {
+        for(Member member1 : memberRepo.findByEmailContaining(member.getEmail())) {
+            System.out.println(member1.getId());
+        }
         return false;
     }
 
     @Override
     public boolean booleanSearchUserById(Member member) {
+        for(Member member1 : memberRepo.findByIdContains(member.getId())) {
+            System.out.println(member1.getId());
+        }
         return false;
     }
 
     @Override
     public boolean booleanSearchUserByPassword(Member member) {
+        for(Member member1 : memberRepo.findByPasswordIsContaining(member.getPassword())) {
+            System.out.println(member1.getId());
+        }
         return false;
     }
 
     @Override
     public List<Member> getMemberListEmailSecurityStarByMemberList(List<Member> memberList) {
+        for(Member member : memberList) {
+            try {
+                //예제
+                String str = "ABCDEFG"; //대상 문자열
+                /*A=0 B=1 C=2 D=3 E=4 F=5 G=6의 index를 가진다.*/
+
+                str.substring(3);
+                /*substring(시작위치) 결과값 = DEFG*/
+
+                str.substring(3, 6);
+                /*substring(시작위치,끝위치) 결과값 = DEF*/
+                member.setPassword(encryptAES256.encrypt(member.getPassword()));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
         return null;
     }
 
@@ -133,6 +162,16 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public boolean booleanChangedPassword3CheckByMemberPassword(Member member) {
         return false;
+    }
+
+    @Override
+    public List<Member> getMemberListAndBoardListByMemberId(String memberId) {
+        return memberRepo.findAllByMemberIdEqualsBoardWriter(memberId);
+    }
+
+    @Override
+    public CustomDtoExample getCustomDtoByMemberId(String memberId) {
+        return customDtoExampleRepository.findExample(memberId);
     }
 
 

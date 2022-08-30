@@ -1,6 +1,8 @@
 package com.example.test01.controller.account;
 
 import com.example.test01.entity.account.Member;
+import com.example.test01.entity.board.Board;
+import com.example.test01.entity.customDto.CustomDtoExample;
 import com.example.test01.repository.account.MemberRepository;
 import com.example.test01.service.account.MemberService;
 import com.example.test01.service.account.MemberServiceImpl;
@@ -18,11 +20,79 @@ import java.util.Date;
 @Controller
 @RequestMapping(path ="/account")
 public class MemberController {
+
+    //MemberController 클래스가 실행되면 MemberService를 불러와서
+    // 주입 당하는 것
+    // @Autowired를 사용해서
+    //MemberController는 MemberService를 주입당하겠다고 선언
+    //Springboot는 인식 함 : MemberController가 실행할려면
+    //MemberService가 필요함
+    //장점1 : MemberController 실행되는 시점에서 필요한 객체만 실행할 수 있는 절약
+    //장점2 : 이미 컨테이너에 있는 객체를 활용하여 최대한 인스턴스(객체)를 최소한 사용
+    //아래 @Autowired는 필드 주입 방식
+    //메서드, 생성자, 필드 (객체의 데이터)
+    //필드 주입의 경우에는 2개이상 주입할시 어떤 게 먼저 주입당하는지를 모름
+    //주입 당하는 A와 B가 서로 주입당할 경우에는 어떤 게 먼저 생성할지 모르는 문제
+
+    //일반 자바라면, 실행하는 클래스 (main) 안에서 인스턴스를 만들어서
+    // 인스턴스 안에 있는 메서드를 실행 (Static : 불러옴)
+    //실행되는 클래스(main)이 먼저 존재하고 인스턴스르 후에 생성
+
+    //MemberService 라는 객체를 선언
+    //필드 주입방식은 @Autowired를 통해 컨테이너에서 주입당함 (할당)
+    //final은 변하지 않는 한 개 : MemberController는 안심하고 MemberService사용
     private final MemberService memberService;
+    //생성자 주입방식은 아래 생성자에 @Autowired를 붙혀서 컨테이너에서 주입 당함
+    //MemberController 클래스의 생성자를 선언
+    //매개변수를 MemberService로 받아서 위에 있는 필드값 MemberSerivce에 할당
+    //장점 : 객체 생성 시점에서 생성자를 통해서 주입 받기 때문에 순서 명확해짐
 
     @Autowired
     protected MemberController(MemberService memberService) {
         this.memberService = memberService; }
+
+    @GetMapping("/selectMembersBoards")
+    public String selectBoard(Member member, Model model) {
+        System.out.println("--------boarde select!!-----------");
+        //board.getId()는 클라이언트에서 가져옴
+
+        //@Service에 board를 인자값으로 넣고 메서드 실행
+//        model.addAttribute("boardList", );
+
+        System.out.println(member.getId());
+        for(Member for_member : memberService.getMemberListAndBoardListByMemberId(member.getId())) {
+            System.out.println(for_member.getId());
+            model.addAttribute("boardList", for_member);
+            for(Board board : for_member.getBoardList()) {
+                System.out.println(board.getTitle());
+            }
+        }
+        //회원이 작성한 게시글리스트(List<Board>)
+        // > HTML에다가 뿌려주면 끝 (Controller에 가면 메서드가 실행되서 다른 결과물을 리턴받기 때문
+        // 어느 HTML로 가느냐? = 객체지향은 재활용성이 중요한 요인 중 하나
+        // HTML에 중에 재사용 할만한 것을 먼저 찾고, 그 후에 새로 만들기에 대해 고민
+        // > getBoardList
+
+        //return 페이지 Or controller mapoing
+        return "/board/getBoardList";
+    }
+
+    @GetMapping("/inittest")
+    public String inittest(Member member, Model model) {
+        System.out.println("--------example select!!-----------");
+        System.out.println(member.getId());
+
+        CustomDtoExample listCheck = (CustomDtoExample) memberService.getCustomDtoByMemberId(member.getId());
+
+        //member id
+        System.out.println(listCheck.getInput_id());
+        //board writer
+        System.out.println(listCheck.getInput_writer());
+        //board title1
+        System.out.println(listCheck.getInput_title());
+
+        return "/board/getBoardList";
+    }
 
     //(클라이언트가 두 분류) 게시판 : 사용자관점
     //게시판 : 사용자 관점, 시스템 관리 관점(회원 관리, 게시판 관리, 콘텐츠 관리) [ 웹 솔루션을 관리하는 오너 ]
@@ -94,12 +164,17 @@ public class MemberController {
 
     @PostMapping("/selectAccount")
     public String resultAccount(Member member, Model model) {
+        System.out.println("------select account--------");
+        System.out.println(memberService.booleanSearchUserByEmail(member));
+        System.out.println("------select account--------");
+        System.out.println(memberService.booleanSearchUserById(member));
+        System.out.println("------select account--------");
+        System.out.println(memberService.booleanSearchUserByPassword(member));
         model.addAttribute("member",
                 memberService.getMemberWhereIdOrEmail(member.getEmail(), member.getId()));
         return "account/resultAccount";
     }
 }
-
 
 
     //백업 entity

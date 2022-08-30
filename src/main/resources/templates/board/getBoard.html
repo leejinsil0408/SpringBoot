@@ -46,8 +46,14 @@
         </tr>
     </table>
     </form>
-    <a th:href="@{/board/deleteBoard(seq=${board.seq})}">글삭제</a>
-    <a th:href="@{/board/getBoardList}">글목록</a>
-<a th:href="@{/board/insertComments(seq=${board.seq})}">Comments 입력</a>
+<a th:href="@{/board/sortTest(seq=${board.seq})}">글 앞뒤 목록 보기</a>
+<a th:href="@{/board/deleteBoard(seq=${board.seq})}">글삭제</a>
+<a th:href="@{/board/getBoardList}">글목록</a>
+<a th:href="@{/board/insertComments(title=${board.title})}">comments 입력</a>
+<a th:href="@{/board/getCommentsList(board_title=${board.title})}">comments 목록</a>
+<br>
+<a th:href="@{/board/getBoard(seq=${boardPrv.PREVID})}"><p th:text="${boardPrv.PREVID}"></p></a>
+<p th:text="${boardPrv.PREV_SUBJECT}"></p>
+<a th:href="@{/board/getBoard(seq=${boardPrv.
 </body>
 </html>

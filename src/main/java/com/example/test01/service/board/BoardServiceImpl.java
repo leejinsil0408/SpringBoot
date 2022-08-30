@@ -13,8 +13,11 @@ package com.example.test01.service.board;
 import com.example.test01.entity.account.Member;
 import com.example.test01.entity.board.Board;
 import com.example.test01.entity.board.Comments;
+import com.example.test01.entity.customDto.CustomDtoSortPages;
 import com.example.test01.repository.board.BoardRepository;
 //import com.example.test01.repository.board.CommentsRepository;
+import com.example.test01.repository.board.CommentsRepository;
+import com.example.test01.repository.custom.CustomDtoExampleRepositoryPred;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,16 +29,21 @@ import java.util.List;
 public class BoardServiceImpl implements BoardService {
 
     private final BoardRepository boardRepo;
-//    private final CommentsRepository commentsRepository;
+    private final CommentsRepository commentsRepository;
+    private final CustomDtoExampleRepositoryPred customDtoExampleRepositoryPred;
 
+    //순환참조 중단
     @Autowired
-    protected BoardServiceImpl(BoardRepository boardRepo) {
-//    protected BoardServiceImpl(BoardRepository boardRepo, CommentsRepository commentsRepository, CommentsRepository commentsRepository1) {
-////        this.commentsRepository = commentsRepository;
+    protected BoardServiceImpl(BoardRepository boardRepo,
+                               CommentsRepository commentsRepository,
+                               CustomDtoExampleRepositoryPred customDtoExampleRepositoryPred
+    ) {
+        this.customDtoExampleRepositoryPred = customDtoExampleRepositoryPred;
+        this.commentsRepository = commentsRepository;
         this.boardRepo = boardRepo;
     }
 
-//BoardRepository에 있는 DB와 연동하여 기능하는 것을 명시
+    //BoardRepository에 있는 DB와 연동하여 기능하는 것을 명시
 
     //클라이언트에서 받아온 Board객체의 데이터를 BoardRepository의 상속받은 CrudRepository의
     //findAll 메서드를 통해서 전체 조회
@@ -74,6 +82,11 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public void insertComment(Comments comments) {
+        System.out.println("------service logic---------");
+        System.out.println(comments.getBoard_title());
+        System.out.println(comments.getComments_content());
+        System.out.println(comments.getSeq());
+        commentsRepository.save(comments);
         //boolean title 체크
         //insert comment 실행
         //트랜젝션 처리
@@ -93,6 +106,11 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
+    public List<Board> getBoardListAllBoardListByMemberId(Member member) {
+        return boardRepo.findAllByMemberIdEqualsBoardWriter(member.getId());
+    }
+
+    @Override
     public List<String> doNounsAnalysis(List<Board> boardlist) {
         return null;
     }
@@ -107,8 +125,27 @@ public class BoardServiceImpl implements BoardService {
         return null;
     }
 
-//    @Override
-//    public List<Comments> getAllComments(Comments comments) {
-//        return commentsRepository.findCommentByBoard_seq(comments.getBoard_seq());
-//    }
+    @Override
+    public List<List<Object>> getBoardAndMemberUsersBoard() {
+        return boardRepo.findAllByBoardAndMember();
+    }
+
+    @Override
+    public List<Comments> getAllComments(Comments comments) {
+//        List<Comments> checktest = commentsRepository.findCommentsByBoard_seq(comments.getBoard_title());
+        List<Comments> checktest = commentsRepository.findAll();
+        System.out.println(checktest.size());
+        for (int i = 0; i < checktest.size(); i++) {
+            System.out.println("-----init for-------");
+            checktest.get(i).getComments_content();
+        }
+        return checktest;
+    }
+
+    @Override
+    public CustomDtoSortPages getPagesSortIndex(Board board) {
+        CustomDtoSortPages customDtoSortPages = customDtoExampleRepositoryPred.findByPages(board.getSeq());
+        System.out.println(customDtoSortPages.getPREVID());
+        return customDtoSortPages;
+    }
 }

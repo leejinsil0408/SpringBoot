@@ -7,7 +7,7 @@ import javax.swing.plaf.synth.SynthUI;
 
 public class TextTransfer {
 
-    public String TransferText3Word(String text) throws Exception {
+    public String transferText3Word(String text) throws Exception {
 
         //java 문자열 치환 내장메서드 : split, subString..
         String wordFirst3 = text.substring(0, 3);
@@ -25,6 +25,8 @@ public class TextTransfer {
         System.out.println(wordLast);
 
         System.out.println(wordFirst3 + wordLast);
+
+        return wordFirst3 + wordLast;
     }
 }
 

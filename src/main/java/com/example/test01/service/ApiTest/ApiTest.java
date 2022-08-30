@@ -19,19 +19,18 @@ import org.springframework.stereotype.Service;
 public class ApiTest {
 
     //파싱 받아서 가공하는 라이브러리 JAVA
-    // 1. SimpleJson : 대용량 데이터 처리 속도가 빠름
-    // 2. Jeckson : 평균적으로 빠름
-    // 3. Gson : 간단한 데이터 처리 속도가 빠름
+    // 1. SimpleJson : 대용량 데이터 처리 속도가 빠름 (골고루 빠름)
+    // 2. Jeckson : 평균적으로 빠름 (빅데이터 등 큰 사이즈의 json 처리)
+    // 3. Gson : 간단한 데이터 처리 속도가 빠름 (분산 아키텍처 설정 등 작은 용량의 json)
     public void testAPI() {
         String result = readAPI();
 
-//        String jsonStr = gson.toJson(result);
-//        System.out.println(jsonStr);
-
+        //Gson transfer
         Gson pretty = new GsonBuilder().setPrettyPrinting().create();
         String element = pretty.toJson(result);
-
+        System.out.println("----------testAPI-----------");
         System.out.println(element);
+
 
     }
 
