@@ -9,6 +9,8 @@ import java.net.URL;
 //import com.google.gson.GsonBuilder;
 //import com.google.gson.JsonElement;
 //import com.google.gson.JsonParser;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.boot.autoconfigure.gson.GsonBuilderCustomizer;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +20,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class ApiTest {
 
-    //파싱 받아서 가공하는 라이브러리 JAVA
-    // 1. SimpleJson : 대용량 데이터 처리 속도가 빠름 (골고루 빠름)
-    // 2. Jeckson : 평균적으로 빠름 (빅데이터 등 큰 사이즈의 json 처리)
-    // 3. Gson : 간단한 데이터 처리 속도가 빠름 (분산 아키텍처 설정 등 작은 용량의 json)
     public void testAPI() {
         String result = readAPI();
+
+        //파싱 받아서 가공하는 라이브러리 JAVA
+        // 1. SimpleJson : 대용량 데이터 처리 속도가 빠름 (골고루 빠름)
+        // 2. Jeckson : 평균적으로 빠름 (빅데이터 등 큰 사이즈의 json 처리)
+        // 3. Gson : 간단한 데이터 처리 속도가 빠름 (분산 아키텍처 설정 등 작은 용량의 json)
+
+        //json방식은 http 프로토콜을 통해서 데이터 전송규악 (클라이언트 백엔트 통신)
+        //백엔드와 백엔드 통신도 json방식 > grpc 통신의 등장으로 다수의 백엔드 통신은 grpc 변경
+        //앱 통신도 grpc
 
         //Gson transfer
         Gson pretty = new GsonBuilder().setPrettyPrinting().create();
@@ -31,6 +38,12 @@ public class ApiTest {
         System.out.println("----------testAPI-----------");
         System.out.println(element);
 
+        //String 문자열을 dto 객체로 변환
+        //fromJson(문자열, DTO 객체. class (런타임 시점 객체))
+        BusDTO busdto = pretty.fromJson(result, BusDTO.class);
+        for (int i =0; i< busdto.getResponse().getBody().getNumOfRows(); i++) {
+            System.out.println(busdto.getResponse().getBody().getItems().get(i).getCpname());
+        }
 
     }
 
@@ -70,3 +83,4 @@ public class ApiTest {
         return sb.toString();
     }
 }
+

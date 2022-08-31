@@ -5,6 +5,7 @@ import com.example.test01.entity.customDto.CustomAPIDtoExample;
 import com.example.test01.entity.customDto.CustomStudentData;
 import com.example.test01.entity.customDto.Student;
 import com.example.test01.service.account.MemberService;
+import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import java.util.List;
 //@RestController
 @Controller
 public class TestController {
+
     private final MemberService memberService;
 
     @Autowired
@@ -32,6 +34,7 @@ public class TestController {
     @ResponseBody
     @RequestMapping("/read/alldata")
     public CustomStudentData readAlldata() {
+
         Student jslee = new Student();
 
         jslee.setName("이진실");

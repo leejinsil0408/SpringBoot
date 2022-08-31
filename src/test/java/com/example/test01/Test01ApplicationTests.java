@@ -2,7 +2,6 @@ package com.example.test01;
 
 import com.example.test01.entity.account.Member;
 import com.example.test01.repository.account.MemberRepository;
-import com.example.test01.service.ApiTest.ApiTest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

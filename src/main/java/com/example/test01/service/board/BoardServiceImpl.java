@@ -17,7 +17,7 @@ import com.example.test01.entity.customDto.CustomDtoSortPages;
 import com.example.test01.repository.board.BoardRepository;
 //import com.example.test01.repository.board.CommentsRepository;
 import com.example.test01.repository.board.CommentsRepository;
-import com.example.test01.repository.custom.CustomDtoExampleRepositoryPred;
+//import com.example.test01.repository.custom.CustomDtoExampleRepositoryPred;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,15 +30,15 @@ public class BoardServiceImpl implements BoardService {
 
     private final BoardRepository boardRepo;
     private final CommentsRepository commentsRepository;
-    private final CustomDtoExampleRepositoryPred customDtoExampleRepositoryPred;
+//    private final CustomDtoExampleRepositoryPred customDtoExampleRepositoryPred;
 
     //순환참조 중단
     @Autowired
     protected BoardServiceImpl(BoardRepository boardRepo,
-                               CommentsRepository commentsRepository,
-                               CustomDtoExampleRepositoryPred customDtoExampleRepositoryPred
+                               CommentsRepository commentsRepository
+
     ) {
-        this.customDtoExampleRepositoryPred = customDtoExampleRepositoryPred;
+//        this.customDtoExampleRepositoryPred = customDtoExampleRepositoryPred;
         this.commentsRepository = commentsRepository;
         this.boardRepo = boardRepo;
     }
@@ -144,8 +144,8 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public CustomDtoSortPages getPagesSortIndex(Board board) {
-        CustomDtoSortPages customDtoSortPages = customDtoExampleRepositoryPred.findByPages(board.getSeq());
-        System.out.println(customDtoSortPages.getPREVID());
-        return customDtoSortPages;
+//        CustomDtoSortPages customDtoSortPages = customDtoExampleRepositoryPred.findByPages(board.getSeq());
+//        System.out.println(customDtoSortPages.getPREVID());
+        return null;
     }
 }
