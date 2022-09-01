@@ -14,6 +14,7 @@ import com.example.test01.entity.account.Member;
 import com.example.test01.entity.board.Board;
 import com.example.test01.entity.board.Comments;
 import com.example.test01.entity.customDto.CustomDtoSortPages;
+import com.example.test01.entity.data.FileUploadEntity;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface BoardService {
 
     List<Board> getBoardList(Board board);
 
-    void insertBoard(Board board);
+    Long insertBoard(Board board);
 
     Board getBoard(Board board);
 
@@ -54,5 +55,13 @@ public interface BoardService {
     List<Comments> getAllComments(Comments comments);
 
     CustomDtoSortPages getPagesSortIndex(Board board);
+
+    Long insertFileUploadEntity(FileUploadEntity fileUploadEntity);
+    //이제 보드서비스Impl 구현하기
+
+//    FileUploadEntity getFileUploadEntity(String board_seq);
+
+
+    FileUploadEntity getFileUploadEntity2(Long board_seq);
 }
 
