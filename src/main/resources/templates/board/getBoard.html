@@ -18,7 +18,15 @@
         <tr>
             <td bgcolor="green" th:text="분류" width="70" align="center"></td>
             <td>
-                <select name="category" th:value="${board.}"
+                <label>
+                    <select name="category" th:value="${board.category}" th:width="20">
+                        <option value="none" selected disabled hidden>==분류 선택==</option>
+                        <option value="상품">상품</option>
+                        <option value="배송">배송</option>
+                        <option value="교환">교환</option>
+                        <option value="기타">기타</option>
+                    </select>
+                </label>
             </td>
         </tr>
         <tr>
@@ -26,7 +34,9 @@
             <!--
                 [서버]에서 java의 데이터를 [클라이언트]html문서에 값을 할당해주는 문법${title}
             -->
-            <td><input name="title" type="text" th:value="${board.title}"></td>
+            <td><label>
+                <input name="title" type="text" th:value="${board.title}">
+            </label></td>
         </tr>
         <tr>
             <td bgcolor="#add8e6" th:text="작성자"></td>
@@ -34,7 +44,9 @@
         </tr>
         <tr>
             <td bgcolor="#add8e6" th:text="내용"></td>
-            <td><textarea name="content" th:text="${board.content}" cols="40" rows="10"></textarea></td>
+            <td><label>
+                <textarea name="content" th:text="${board.content}" cols="40" rows="10"></textarea>
+            </label></td>
         </tr>
         <tr>
             <td bgcolor="#add8e6" th:text="등록일"></td>
@@ -51,7 +63,10 @@
         </tr>
     </table>
 </form>
+
+<br>
 <a th:href="@{/board/sortTest(seq=${board.seq})}">글 앞뒤 목록 보기</a>
+<a th:href="@{/board/insertBoard}">새글 등록</a>
 <a th:href="@{/board/deleteBoard(seq=${board.seq})}">글삭제</a>
 <a th:href="@{/board/getBoardList}">글목록</a>
 <a th:href="@{/board/insertComments(title=${board.title})}">comments 입력</a>
