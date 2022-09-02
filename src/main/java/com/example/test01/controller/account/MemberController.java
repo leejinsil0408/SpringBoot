@@ -77,22 +77,22 @@ public class MemberController {
         return "/board/getBoardList";
     }
 
-    @GetMapping("/inittest")
-    public String inittest(Member member, Model model) {
-        System.out.println("--------example select!!-----------");
-        System.out.println(member.getId());
-
-        CustomDtoExample listCheck = (CustomDtoExample) memberService.getCustomDtoByMemberId(member.getId());
-
-        //member id
-        System.out.println(listCheck.getInput_id());
-        //board writer
-        System.out.println(listCheck.getInput_writer());
-        //board title1
-        System.out.println(listCheck.getInput_title());
-
-        return "/board/getBoardList";
-    }
+//    @GetMapping("/inittest")
+//    public String inittest(Member member, Model model) {
+//        System.out.println("--------example select!!-----------");
+//        System.out.println(member.getId());
+//
+//        CustomDtoExample listCheck = (CustomDtoExample) memberService.getCustomDtoByMemberId(member.getId());
+//
+//        //member id
+//        System.out.println(listCheck.getInput_id());
+//        //board writer
+//        System.out.println(listCheck.getInput_writer());
+//        //board title1
+//        System.out.println(listCheck.getInput_title());
+//
+//        return "/board/getBoardList";
+//    }
 
     //(클라이언트가 두 분류) 게시판 : 사용자관점
     //게시판 : 사용자 관점, 시스템 관리 관점(회원 관리, 게시판 관리, 콘텐츠 관리) [ 웹 솔루션을 관리하는 오너 ]
