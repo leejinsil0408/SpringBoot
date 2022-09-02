@@ -271,8 +271,10 @@ public class BoardController {
     //객체(데이터저장) : String, int, double
     //Stream 객체는 파일을 컴퓨터가  cpu에서 바로 읽어들일 수 있도록 하는 객체
 //    InputStream imageStream = new FileInputStream("파일이미지저장위치" + imgname);
+    //경로가 가르키는 파일을 바이트 스트림으로 읽기
     FileInputStream fis = new FileInputStream(path);
     //Buffered : CPU에서 데이터 읽어올 때 메모리와 캐시 사이에서 CPU와의 속도 차이를 줄이기 위한 중간 저장 위치
+    //바이트 단위로 파일을 읽어오는 버퍼 스트림으 가져오기
     BufferedInputStream bis = new BufferedInputStream(fis);
     //byte배열로 전환하여 ResponseEntity를 통해 클라이언트에게 데이터 전달
     //Http프로토콜은 바이트 단위(배열)로 데이터를 주고 받음
@@ -281,7 +283,6 @@ public class BoardController {
 
     //http 프로토콜은 바이트 배열로 데이터를 주고 받기 때문에 stream이나 버퍼를 통해 전환
     return new ResponseEntity<byte[]>(imgByteArr, HttpStatus.OK);
-
 }
 
 

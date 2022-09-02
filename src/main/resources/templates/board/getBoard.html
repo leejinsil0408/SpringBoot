@@ -15,7 +15,12 @@
             <td bgcolor="#add8e6" th:text="번호" width="80"></td>
             <td th:text="${board.seq}"></td>
         </tr>
-
+        <tr>
+            <td bgcolor="green" th:text="분류" width="70" align="center"></td>
+            <td>
+                <select name="category" th:value="${board.}"
+            </td>
+        </tr>
         <tr>
             <td bgcolor="#add8e6" th:text="제목" width="80"></td>
             <!--
@@ -46,16 +51,16 @@
         </tr>
     </table>
 </form>
-<!--<a th:href="@{/board/sortTest(seq=${board.seq})}">글 앞뒤 목록 보기</a>-->
-<!--<a th:href="@{/board/deleteBoard(seq=${board.seq})}">글삭제</a>-->
-<!--<a th:href="@{/board/getBoardList}">글목록</a>-->
-<!--<a th:href="@{/board/insertComments(title=${board.title})}">comments 입력</a>-->
-<!--<a th:href="@{/board/getCommentsList(board_title=${board.title})}">comments 목록</a>-->
-<!--<br>-->
-<!--<a th:href="@{/board/getBoard(seq=${boardPrv.PREVID})}"><p th:text="${boardPrv.PREVID}"></p></a>-->
-<!--<p th:text="${boardPrv.PREV_SUBJECT}"></p>-->
-<!--<a th:href="@{/board/getBoard(seq=${boardPrv.NEXTID})}"><p th:text="${boardPrv.NEXTID}"></p></a>-->
-<!--<p th:text="${boardPrv.NEXT_SUBJECT}"></p>-->
+<a th:href="@{/board/sortTest(seq=${board.seq})}">글 앞뒤 목록 보기</a>
+<a th:href="@{/board/deleteBoard(seq=${board.seq})}">글삭제</a>
+<a th:href="@{/board/getBoardList}">글목록</a>
+<a th:href="@{/board/insertComments(title=${board.title})}">comments 입력</a>
+<a th:href="@{/board/getCommentsList(board_title=${board.title})}">comments 목록</a>
+<br>
+<a th:href="@{/board/getBoard(seq=${boardPrv.PREVID})}"><p th:text="${boardPrv.PREVID}"></p></a>
+<p th:text="${boardPrv.PREV_SUBJECT}"></p>
+<a th:href="@{/board/getBoard(seq=${boardPrv.NEXTID})}"><p th:text="${boardPrv.NEXTID}"></p></a>
+<p th:text="${boardPrv.NEXT_SUBJECT}"></p>
 <hr>
 <img th:src="@{${imgLoading}}">
 <form th:action="@{/board/uploadfile}" method="post" enctype="multipart/form-data">

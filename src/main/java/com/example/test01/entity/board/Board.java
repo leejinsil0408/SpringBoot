@@ -45,6 +45,8 @@ public class Board extends BaseTimeEntity implements Serializable {
     @GeneratedValue
     private Long seq;
 
+    private String category;
+
     @Setter
     //@Column은 title 필드값을 컴럼화할 때 길이와 null 입력 가능여부 옵션
     @Column(length = 40, nullable = false)
