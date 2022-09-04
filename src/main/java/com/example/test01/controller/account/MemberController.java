@@ -53,7 +53,7 @@ public class MemberController {
 
     @GetMapping("/selectMembersBoards")
     public String selectBoard(Member member, Model model) {
-        System.out.println("--------boarde select!!-----------");
+        System.out.println("--------board select!!-----------");
         //board.getId()는 클라이언트에서 가져옴
 
         //@Service에 board를 인자값으로 넣고 메서드 실행
