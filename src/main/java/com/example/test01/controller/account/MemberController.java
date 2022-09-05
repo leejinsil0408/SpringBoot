@@ -67,6 +67,7 @@ public class MemberController {
                 System.out.println(board.getTitle());
             }
         }
+        //
         //회원이 작성한 게시글리스트(List<Board>)
         // > HTML에다가 뿌려주면 끝 (Controller에 가면 메서드가 실행되서 다른 결과물을 리턴받기 때문
         // 어느 HTML로 가느냐? = 객체지향은 재활용성이 중요한 요인 중 하나
